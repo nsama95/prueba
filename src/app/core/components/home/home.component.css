@@ -1,0 +1,423 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    text-decoration: none;
+  }
+  
+  body {
+  
+    height: 100vh;
+  }
+  
+  
+header {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  
+  
+  .menu{
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    font-weight: bolder;
+    color: #000000;
+  }
+  
+  .beuatelogo {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .menu .logo{
+    font-weight: bolder;
+    font-size: 25px;
+    color: #000000;
+  }
+  
+  .menu .navbar ul{
+    list-style: none;
+  
+  }
+  
+  .menu .navbar ul li {
+    position: relative;
+    float: left;
+  }
+  
+  
+  .menu .navbar ul li a {
+    font-size: 20px;
+    padding: 20px;
+    color: #000000;
+    display: block;
+  }
+  
+  
+  .menu .navbar ul li a:hover {
+    color: #87C9CF;
+  }
+  
+  
+  #menu {
+    display: none;
+  }
+  
+  .menu label {
+    cursor: pointer;
+    display: none;
+  }
+  
+  .header-text{
+    text-align: center;
+    width: 700px;
+  
+  }
+  
+  .header-text h1{
+    color: #F684AF;
+    font-size: 95px;
+    line-height: normal;
+  }
+  
+  .header-text p {
+    margin-top: 35px;
+    color: #F684AF;
+    font-size: large;
+    text-transform: initial;
+    font-weight: bolder;
+  }
+  
+  .btn-1 {
+    display: inline-block;
+    background-color: #87C9CF;
+    margin-top: 35px;
+    padding: 15px 25px;
+    border-radius: 25px;
+    color: #000000;
+    text-transform: initial;
+  }
+  
+  /* NO CAMBIAR FONDO DE BOTON */
+  .btn-1:hover {
+    background-color: #F684AF;
+  }
+  
+  .services {
+    padding: 50px 0px;
+    text-align: center;
+    color: #F684AF;
+  
+  }
+  
+  .services h2 {
+    font-size: 55px;
+    margin-bottom: 25px;
+    position: center;
+  }
+  
+  .txt-1 {
+    font-size: 18px;
+    padding: 0px 200px;
+  }
+  
+  .group-services {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .service {
+    padding: 35px 25px;
+  }
+  
+  .service img {
+    width: 100px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+  }
+  
+  .service h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+  
+  .service p {
+    font-size: 18px;
+    text-transform: initial;
+  }
+  
+  .carrito {
+    font-size: 20px;
+    padding: 20px;
+    width: 10px;
+    color: #fdb095;
+    display: block;
+  }
+  
+  
+  .porfolio {
+    text-align: center;
+    padding: 50px 0px;
+    color: #F684AF;
+  
+  }
+  
+  
+  .porfolio-txt {
+    margin-bottom: 50px;
+  
+  }
+  
+  
+  .porfolio-txt h2 {
+    font-size: 55px;
+    margin-bottom: 35px;
+    text-transform: initial;
+  }
+  
+  .porfolio-txt p {
+    font-size: 24px;
+    text-transform: initial;
+  
+  }
+  
+  .imgs {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .imgs img {
+    width: 250px;
+    border-radius: 10px;
+    margin: 0px 10px;
+  }
+  
+  .bg-sec {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 30px 0px;
+    height: 300px;
+  }
+  
+  .bg-txt {
+    padding: 100px 0px;
+    text-align: center;
+    color: #F684AF;
+  }
+  
+  
+  
+  .bg-txt h2 {
+    font-size: 55px;
+    margin-bottom: 35px;
+    line-height: 100%;
+  }
+  
+  .bg-txt p {
+    font-size: 18px;
+    margin-bottom: 25px;
+  }
+  
+  
+  
+  .price {
+    text-align: center;
+  }
+  
+  .price h3 {
+    font-size: 50px;
+    margin-bottom: 25px;
+  }
+  
+  .price ul li {
+    font-size: 18px;
+  }
+  
+  footer {
+    padding: 50px 0px;
+    background-color: #87c9cf98;
+  
+  }
+  
+  .ft {
+    display: flex;
+    position: relative;
+    justify-content:space-evenly;
+  }
+  
+  .enlace h3 {
+    color: #F684AF;
+    font-size: 20px;
+    margin-bottom: 25px;
+    text-transform: initial;
+  }
+  
+  .enlace li {
+    list-style: none;
+  }
+  
+  .enlace a {
+    color: #F684AF;
+    display: block;
+    margin-bottom: 15px;
+    text-transform: initial;
+  }
+  
+  .enlace form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .btn-2 {
+    padding: 10px 25px;
+    border: 0px;
+    border-radius: 5px;
+  }
+  
+  
+  .btn-3 {
+    background-color: #F684AF;
+    border-radius: 5px;
+    padding: 10px 25px;
+    border: 0px;
+    color: #ffffff;
+    margin-top: 15px;
+  }
+  
+  @media(max-width:991px){
+    .menu{
+      padding: 20px;
+    }
+    .menu label {
+      display: initial;
+    }
+    .menu .navbar {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: #e5958e;
+      display: none;
+    }
+  
+    .menu .navbar ul li {
+      width: 100%;
+    }
+  
+    .menu .navbar ul li a:hover {
+      color: #bebebe;
+    }
+  
+    #menu:checked ~ .navbar {
+      display: initial;
+      }
+  
+    .menu-icono {
+      width: 25px;
+    }
+  
+    header {
+      height: 50vh;
+    }
+  
+    .header-text {
+      margin-top: 50px;
+      padding: 0px 25px;
+    }
+  
+    .services {
+      padding: 30px;
+    }
+  
+    .txt-1 {
+      padding: 30px;
+      margin-bottom: 35px;
+    }
+  
+    .group-services {
+      flex-direction: column;
+    }
+  
+    .services {
+      margin-bottom: 20px;
+  
+    }
+  
+  
+    .porfolio {
+      padding: 0px 30px;
+      flex-direction: column;
+      text-align: center;
+  
+  
+    }
+  
+    .porfolio-txt p{
+      margin: 0;
+  
+  
+    }
+  
+    .imgs {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .imgs img {
+      margin: 15px 0px 0px 0px;
+    }
+  
+    .bg-txt {
+      padding: 30px;
+    }
+  
+    .prices {
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+  
+    .price {
+      margin-bottom: 15px;
+    }
+  
+    .footer {
+      padding: 30px;
+  
+  
+    }
+  
+    .ft {
+      text-align: center;
+      flex-direction: column;
+  
+    }
+  
+    .enlace form {
+      align-items: center;
+    }
+  
+  }
+  
+  .icono {
+    width: 30px;
+    height: 30px;
+  }
+  

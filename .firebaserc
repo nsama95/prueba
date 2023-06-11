@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "beaute-shop-cd470": {
+      "hosting": {
+        "beaute-shop": [
+          "beaute-shop-cd470"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "production": "beaute-shop-cd470"
+  }
+}

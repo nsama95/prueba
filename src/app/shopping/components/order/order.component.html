@@ -1,0 +1,5 @@
+<div *ngIf="order$ | async as order">
+  <br>
+  <br>
+  <app-order-summary [order]="order"></app-order-summary>
+</div>

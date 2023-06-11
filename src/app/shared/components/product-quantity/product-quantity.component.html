@@ -1,0 +1,18 @@
+<div class="row no-gutters">
+  <div class="col-3">
+    <button class="btn btn-secondary btn-block" (click)="removeFromCart()">
+      <i class="fas fa-minus"></i>
+    </button>
+  </div>
+  <div class="col my-auto text-center">
+    {{ shoppingCart.getQuantity(product) }} in cart
+  </div>
+  <div class="col-3">
+    <button
+      (click)="addToCart()"
+      class="btn btn-secondary btn-block float-right"
+    >
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+</div>
