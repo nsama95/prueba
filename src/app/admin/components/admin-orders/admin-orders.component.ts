@@ -20,6 +20,7 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
   filteredOrders: Order[];
   orders: Order[];
   orderSub: Subscription;
+  numEnvio: number=null;
 
   @ViewChild('idQuery') idQuery: ElementRef;
   @ViewChild('customerQuery') customerQuery: ElementRef;
@@ -52,5 +53,36 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
         this.customerQuery.nativeElement.value
       )
     );
+  }
+  editState(order :Order,state){
+    let stateUpdate;
+    switch (state) {
+      case 'Realizado':
+       stateUpdate = 'Confirmado';
+
+        break;
+      case 'Confirmado':
+        stateUpdate ='empaquetado';
+        break;
+      case 'empaquetado':
+        stateUpdate = 'enviado' ;
+        break;
+        case 'enviado al correo':
+          stateUpdate = 'enviado' ;
+          break;
+          case 'enviado':
+            stateUpdate = 'enviado' ;
+            break;
+    };
+//console.log(stateUpdate);
+    this.orderService.updateStateOrder(order,stateUpdate);
+  }
+
+  editStateAndShipping(order :Order,state){
+     this.orderService.updateStateOrder(order,state,this.numEnvio);
+     setTimeout(() => {
+      console.log('entre');
+      this.orderService.updateStateOrder(order,'entregado',this.numEnvio);
+  }, 6000);
   }
 }

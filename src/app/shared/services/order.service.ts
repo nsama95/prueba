@@ -26,6 +26,14 @@ export class OrderService {
 
     return result;
   }
+  async updateStateOrder(orderId :Order,state, numEnvio?) {
+    orderId.state=state;
+    orderId.numEnvio=numEnvio;
+   // console.log(JSON.stringify(orderId));
+    let result = await this.db.collection('orders').doc(orderId.id).set(orderId, { merge: true }); 
+    return result;
+   
+  }
 
   getAllOrders() {
     return this.db.collection<Order>('orders').valueChanges({ idField: 'id' });

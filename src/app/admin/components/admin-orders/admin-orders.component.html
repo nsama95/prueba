@@ -21,10 +21,12 @@
   <table class="table" *ngIf="tableService.pageData$">
     <thead>
       <tr>
-        <th>Customer</th>
-        <th>Date</th>
+        <th>Orden</th>
+        <th>Fecha</th>
         <th>ID</th>
-        <th></th>
+        <th>Detalles</th>
+        <th>Estado</th>
+        <th>Accion</th>
       </tr>
     </thead>
     <tbody>
@@ -35,7 +37,24 @@
           {{ order.id }}
         </td>
         <td>
-          <a routerLink="/orders/{{ order.id }}">View</a>
+          <a routerLink="/orders/{{ order.id }}">Ver</a>
+        </td>
+        <td>
+          {{ order.state}}
+        </td>
+        <td>
+         <button *ngIf="order.state=='Realizado'" (click)="editState(order,order.state)">Confirmar </button>
+         <button *ngIf="order.state=='Confirmado'" (click)="editState(order,order.state)">Empaquetar</button>
+         <button *ngIf="order.state=='empaquetado'"(click)="editState(order,order.state)">Enviar al Correo</button>
+
+         <input *ngIf="order.state=='enviado'&& order.numEnvio==null" type="number"  [(ngModel)]="numEnvio">
+         <button *ngIf="order.state=='enviado'&& order.numEnvio==null"(click)="editStateAndShipping(order,order.state)">Cargar numero de envio</button>
+
+              <a *ngIf="order.numEnvio">Numero de envio: {{order.numEnvio}}</a>
+    
+         
+        
+
         </td>
       </tr>
     </tbody>
@@ -54,7 +73,7 @@
     style="width: auto;"
     [(ngModel)]="tableService.tablePageSize"
   >
-    <option [ngValue]="1">1 items per page</option>
+    <option [ngValue]="1">1 items por page</option>
     <option [ngValue]="5">5 items per page</option>
     <option [ngValue]="10">10 items per page</option>
     <option [ngValue]="15">15 items per page</option>

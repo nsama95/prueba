@@ -12,6 +12,8 @@ import { AuthguardService } from 'shared/services/authguard.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SortableTableDirective } from './directives/sortable-table.directive';
 import { OrderService } from 'shared/services/order.service';
+import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { HomeComponent } from 'core/components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { OrderService } from 'shared/services/order.service';
     AdminProductsComponent,
     ProductFormComponent,
     SortableTableDirective,
+    AdminHomeComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,11 @@ import { OrderService } from 'shared/services/order.service';
           {
             path: 'orders',
             component: AdminOrdersComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
+          {
+            path: 'homeP',
+            component: HomeComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
