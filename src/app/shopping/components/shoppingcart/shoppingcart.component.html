@@ -4,11 +4,11 @@
 <br>
 <div class="row col-lg-10 col-md mx-auto" *ngIf="cart$ | async as cart">
   <div class="heading">
-    <h1>Shopping Cart</h1>
+    <h1>Carrito</h1>
     <p *ngIf="cart.totalItemsCount">
-      You have {{ cart.totalItemsCount }} items in your shopping cart.
+      Total: {{ cart.totalItemsCount }} items.
       <button (click)="clearCart()" class="btn btn-outline-danger btn-sm">
-        Clear Shopping Cart
+        Limpiar carrito
       </button>
     </p>
   </div>
@@ -17,9 +17,9 @@
     <thead>
       <tr>
         <th></th>
-        <th>Product</th>
-        <th class="text-center">Quantity</th>
-        <th class="text-right">Price</th>
+        <th>Producto</th>
+        <th class="text-center">Cantidad</th>
+        <th class="text-right">Precio</th>
       </tr>
     </thead>
     <tbody>
@@ -54,6 +54,6 @@
     </tfoot>
   </table>
   <a routerLink="/checkout" *ngIf="cart.items.length" class="btn btn-primary"
-    >Check Out</a
+    >Envio</a
   >
 </div>

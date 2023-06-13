@@ -28,7 +28,6 @@ import { RegistrarComponent } from 'core/components/registrar/registrar.componen
   imports: [
     BrowserModule,
     SharedModule,
-    AdminModule,
     COREModule,
     ShoppingModule,
     ToastrModule.forRoot(),
