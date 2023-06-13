@@ -7,7 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { map, first, switchMap } from 'rxjs/operators';
 import { UserService } from 'shared/services/user.service';
 import { AppUser } from 'shared/models/app-user';
-
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,7 +18,8 @@ export class AuthService {
   constructor(
     private fbAuth: AngularFireAuth,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private db: AngularFirestore
   ) {
     this.user$ = fbAuth.user;
   }
@@ -36,11 +38,66 @@ export class AuthService {
     );
   }
 
-  login() {
-    this.fbAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-    const redirectUrl =
-      this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-    localStorage.setItem('returnUrl', redirectUrl);
+  // login() {
+  //   this.fbAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+  //   const redirectUrl =
+  //     this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+  //   localStorage.setItem('returnUrl', redirectUrl);
+  // }
+
+  async register(dataUser: AppUser) {
+    console.log('user service registro'+dataUser);
+    try {
+      await this.fbAuth.createUserWithEmailAndPassword(
+        dataUser.email,
+        dataUser.password
+      );
+      await this.updateUserData(this.user$);
+    } catch (error) {
+      console.log('ERROR'+error);
+      //window.alert(this.firebaseError.codeError(error.code));
+    }
+  }
+
+  async login(dataUser: AppUser) {
+    try {
+      const { user } = await this.fbAuth.signInWithEmailAndPassword(
+        dataUser.email,
+        dataUser.password
+      )
+
+    }
+      catch (error) {
+      console.log(error);
+    }
+  }
+
+
+
+
+  private updateUserData(user: AppUser) {
+
+    return this.db
+    .collection('users')
+    .doc(user.uid)
+    .set(
+      {
+        uid: user.uid,
+      email: user.email,
+      name: user.name,
+      password: user.password,
+     // photoURL: user.photoURL,
+      isAdmin: true,
+
+      },
+      { merge: true }
+    )
+    .then(() => {
+      console.log('user has been successfully saved to the database.');
+    })
+    .catch(() => {
+      console.error('an error has occurred');
+    });
   }
 
   logout() {

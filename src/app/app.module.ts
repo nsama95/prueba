@@ -21,6 +21,7 @@ import { ProductsComponent } from './shopping/components/products/products.compo
 import { OrderAuthguardService } from './shopping/services/order-authguard.service';
 import { ShoppingModule } from './shopping/shopping.module';
 import { HomeComponent } from 'core/components/home/home.component';
+import { RegistrarComponent } from 'core/components/registrar/registrar.component';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -33,7 +34,7 @@ import { HomeComponent } from 'core/components/home/home.component';
     ToastrModule.forRoot(),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     BrowserAnimationsModule,
     FormsModule,
     CustomFormsModule,
@@ -41,6 +42,7 @@ import { HomeComponent } from 'core/components/home/home.component';
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'registro', component: RegistrarComponent },
       { path: '**', component: NotFoundComponent },
     ]),
   ],

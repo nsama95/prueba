@@ -1,6 +1,6 @@
+
 body {
   min-height: 100vh;
-  /* background: linear-gradient(to right, #333399, #ff00cc); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,23 +9,20 @@ body {
 
 /* Login Card */
 .login-card {
-  width: 450px;
-  height: 550px;
-  background: #F684AF;
-  padding: 4rem;
-  border-radius: 10px;
-  position: relative;
+width: 450px;
+height: 550px;
+background: #F684AF;
+padding: 4rem;
+border-radius: 10px;
+position: relative;
 }
-
-
 
 
 
 .login-card-logo img {
-  width: 220px;
-
+  width: 200px;
 }
-
+/* ---------- */
 
 /* Login Card Standard */
 .login-card-logo,
@@ -46,16 +43,14 @@ body {
 
 /* Login Card Header */
 .login-card-header {
-  margin-bottom: 2rem;
+  margin-bottom: -2.5rem;
 }
 
 .login-card-header h1 {
-
   font-size: 2rem;
   font-weight: 600;
-  margin-bottom: 1.5rem;
-  margin-top: -10rem;
-
+  margin-bottom: 3.5rem;
+  margin-top: -3rem;
 }
 
 .login-card-header h1+div {
@@ -109,14 +104,13 @@ body {
 .login-card input[type="text"],
 .login-card input[type="password"],
 .login-card input[type="email"] {
-  border: none;
-  outline: none;
-  background: rgba(255, 255, 255, .3);
-  border-radius: 100px;
-  width: 100%;
-  transition: background .5s;
-  padding: 1em 0em 1.5em;
-
+border: none;
+outline: none;
+background: rgba(255, 255, 255, .3);
+border-radius: 100px;
+width: 100%;
+transition: background .5s;
+padding: 1em 0em 1.5em;
 }
 
 .login-card input:focus {

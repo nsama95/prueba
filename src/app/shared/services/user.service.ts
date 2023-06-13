@@ -16,7 +16,8 @@ export class UserService {
       .set(
         {
           name: user.displayName,
-          email: user.email,
+          email: user.email
+
         },
         { merge: true }
       )
