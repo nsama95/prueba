@@ -34,7 +34,7 @@ import { RegistrarComponent } from 'core/components/registrar/registrar.componen
     ToastrModule.forRoot(),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule,
     FormsModule,
     CustomFormsModule,

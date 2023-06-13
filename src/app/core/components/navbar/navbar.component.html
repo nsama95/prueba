@@ -69,11 +69,15 @@
             <a class="dropdown-item" routerLink="/orders">Mis Orderes</a>
             <ng-container *ngIf="appUser.isAdmin">
               <a class="dropdown-item" routerLink="/admin/orders"
-                >Listado de Orderes</a
+                >Orderes</a
               >
               <a class="dropdown-item" routerLink="/admin/products"
-                >Listado de Productos</a
+                >Productos</a
               >
+              <a class="dropdown-item" routerLink="/admin/homeP"
+              >Categorias</a>
+            <a class="dropdown-item" routerLink="/admin/employee"
+            >Empleados</a>
               <a class="dropdown-item" routerLink="/admin/homeP"
                 >Editar Página</a
               >

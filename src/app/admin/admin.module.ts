@@ -14,6 +14,9 @@ import { SortableTableDirective } from './directives/sortable-table.directive';
 import { OrderService } from 'shared/services/order.service';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { HomeComponent } from 'core/components/home/home.component';
+import { AdminCategoriesComponent } from './components/admin-categories/admin-categories.component';
+import { AdminEmployeeComponent } from './components/admin-employee/admin-employee.component';
+import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { HomeComponent } from 'core/components/home/home.component';
     ProductFormComponent,
     SortableTableDirective,
     AdminHomeComponent,
+    AdminCategoriesComponent,
+    AdminEmployeeComponent,
+    EmployeeFormComponent,
   ],
   imports: [
     CommonModule,
@@ -55,6 +61,11 @@ import { HomeComponent } from 'core/components/home/home.component';
           {
             path: 'products',
             component: AdminProductsComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
+          {
+            path: 'employee',
+            component: AdminEmployeeComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
         ],

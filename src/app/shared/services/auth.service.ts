@@ -48,11 +48,11 @@ export class AuthService {
   async register(dataUser: AppUser) {
     console.log('user service registro'+dataUser);
     try {
-      await this.fbAuth.createUserWithEmailAndPassword(
+    const {user}=  await this.fbAuth.createUserWithEmailAndPassword(
         dataUser.email,
         dataUser.password
       );
-      await this.updateUserData(this.user$);
+      await this.updateUserData(user,dataUser);
     } catch (error) {
       console.log('ERROR'+error);
       //window.alert(this.firebaseError.codeError(error.code));
@@ -75,14 +75,14 @@ export class AuthService {
 
 
 
-  private updateUserData(user: AppUser) {
+  private updateUserData(userCredencial,user: AppUser) {
 
     return this.db
     .collection('users')
-    .doc(user.uid)
+    .doc(userCredencial.uid)
     .set(
       {
-        uid: user.uid,
+        uid: userCredencial.uid,
       email: user.email,
       name: user.name,
       password: user.password,

@@ -38,7 +38,7 @@ export class ProductTableService {
     );
   }
 
-  /* Fire by the custom event 'sort' from SortableTable directive.  */
+
   onSort({ name, direction }) {
     this.filteredProducts$.next(
       this.filteredProducts.sort((a, b) => {
