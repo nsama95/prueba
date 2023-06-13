@@ -1,0 +1,67 @@
+<br><br><br><br><br><br><p>
+    <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+  </p>
+  
+  <!--p>
+    <input
+      #query
+      (keyup)="filter(query.value)"
+      type="text"
+      placeholder="Search..."
+      class="form-control"
+    />
+  </p-->
+  
+  <table class="table table-striped" #query>
+    <thead>
+      <tr>
+        <th
+          SortableTable
+          scope="col"
+        >
+    Nombre
+        </th>
+        <th
+          SortableTable>
+          E-mail
+        </th>
+        <th scope="col">Rol</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let p of products 
+        "
+      >
+        <td>{{ p.name }}</td>
+        <td>{{ p.email }}</td>
+        <td>{{ p.isAdmin}} | {{p.isEmploye}}</td>
+        <td>
+          <a [routerLink]="['/admin/products/', p.id]">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!--div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="productTableService.tableSize"
+      [(page)]="productTableService.tablePage"
+      [pageSize]="productTableService.tablePageSize"
+    >
+    </ngb-pagination>
+  
+    <select
+      class="custom-select"
+      style="width: auto;"
+      [(ngModel)]="productTableService.tablePageSize"
+    >
+      <option [ngValue]="1">1 items per page</option>
+      <option [ngValue]="5">5 items per page</option>
+      <option [ngValue]="10">10 items per page</option>
+      <option [ngValue]="15">15 items per page</option>
+      <option [ngValue]="20">20 items per page</option>
+    </select>
+  </div-->
+  

@@ -28,12 +28,9 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.productsSubscription = this.productService.getAll().subscribe((p) => {
       this.products = p;
-
-      /* Sets the initial value of this.productTableService.filteredProducts Subject.
-        If a filter input value is provided, any new product in firestore will be filtered through.
-        This will prevent a reset of the table whenever a new product is save to firestore */
-      this.filter(this.query.nativeElement.value);
+     this.filter(this.query.nativeElement.value);
     });
+ 
   }
 
   ngOnDestroy(): void {
@@ -41,8 +38,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   }
 
   filter(query: string) {
-    /* Will filter the value of this.productTableService.filteredProducts
-     by query provided in the search bar */
     query
       ? this.productTableService.filteredProducts$.next(
           this.products.filter((p) =>
