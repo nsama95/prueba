@@ -1,5 +1,5 @@
 <br><br><br><br><br><br><p>
-    <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+    <a routerLink="/admin/employee/new" class="btn btn-primary">Agregar usuario</a>
   </p>
   
   <!--p>
@@ -31,14 +31,14 @@
     <tbody>
       <tr
         *ngFor="
-          let p of products 
+          let p of employee 
         "
       >
         <td>{{ p.name }}</td>
         <td>{{ p.email }}</td>
-        <td>{{ p.isAdmin}} | {{p.isEmploye}}</td>
+        <td>{{ p.isAdmin}} || {{p.isEmploye}}</td>
         <td>
-          <a [routerLink]="['/admin/products/', p.id]">Edit</a>
+          <a [routerLink]="['/admin/employee/', p.id]">Edit</a>
         </td>
       </tr>
     </tbody>

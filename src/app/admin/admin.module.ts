@@ -68,6 +68,16 @@ import { EmployeeFormComponent } from './components/employee-form/employee-form.
             component: AdminEmployeeComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
+          {
+            path: 'employee/new',
+            component: EmployeeFormComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
+          {
+            path: 'employee/:id',
+            component: EmployeeFormComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
         ],
       },
     ]),

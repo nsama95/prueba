@@ -14,4 +14,9 @@ export class CategoriesService {
       .collection('categories', (catRef) => catRef.orderBy('name', 'asc'))
       .valueChanges({ idField: 'id' });
   }
+  getRole() {
+    return this.db
+      .collection('profile', (catRef) => catRef.orderBy('role', 'asc'))
+      .valueChanges({ idField: 'id' });
+  }
 }

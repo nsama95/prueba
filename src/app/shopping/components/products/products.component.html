@@ -9,9 +9,11 @@
       [currentCategory]="currentCategory"
     ></app-product-filter>
   </div>
-  <div class="col">
     <div class="row" *ngIf="cart$ | async as cart">
+
       <ng-container *ngFor="let product of filteredProducts; let i = index">
+        <br>
+        <br>
         <div class="col">
           <app-product-card
             [product]="product"
@@ -22,5 +24,5 @@
         <div *ngIf="(i + 1) % cardsPerRow === 0" class="w-100"></div>
       </ng-container>
     </div>
-  </div>
+
 </div>
