@@ -1,0 +1,42 @@
+<br><br><br><br><br>
+<br><br><br><br><br>
+<p style="padding: 5%;">
+  <a routerLink="/admin/categories" class="btn btn-primary">Atras</a>
+</p>
+<div class="row"style="padding: 5%;">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save()">
+      <div class="form-group">
+        <label for="title">Nombre</label>
+        <input
+          #title="ngModel"
+          [(ngModel)]="categorie.name"
+          name="title"
+          id="title"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+          Ingreser Nombre.
+        </div>
+      </div>
+      
+    
+      <button class="btn btn-primary" [disabled]="f.invalid">Guardar</button>
+      <button
+        type="button"
+        (click)="delete()"
+        *ngIf="id"
+        class="btn btn-danger"
+      >
+        Borrar
+      </button>
+    </form>
+  </div>
+  <!--app-product-card
+    class="col-3 mx-auto"
+    [product]="product"
+    [showActions]="false"
+  ></app-product-card--->
+</div>

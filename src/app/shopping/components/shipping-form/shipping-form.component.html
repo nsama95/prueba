@@ -19,20 +19,39 @@
         </div>
       </div>
     </div>
-
-    <div class="form-group">
-      <label for="">Ciudad</label>
-      <input #city="ngModel" name="city" [(ngModel)]="shipping.city" type="text" class="form-control"
-        placeholder="Ciudad" required />
-      <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
-        <div *ngIf="city.errors.required">City is required.</div>
-      </div>
-    </div>
     <!-- <button (click)="placeOrder()" class="btn btn-primary">
       Place Order
     </button> -->
 
-    <h1 style="text-align: center;">PAGO</h1>
+    <div class="form-group">
+      <label for="city">Ciudad</label>
+      <select
+      #city="ngModel"
+        [(ngModel)]="shipping.city"
+        name="city"
+        id="city"
+        type="text"
+        class="form-control"
+        required
+      >
+        <option value=""></option>
+        <option
+          *ngFor="let zonas of zonas$ | async"
+          [value]="zonas.id"
+          >{{ zonas.name }} -${{zonas.price }}</option
+        >
+      </select>
+      <div
+        class="alert alert-danger"
+        *ngIf="city.touched && city.invalid"
+      >
+        Ingrese la ciudad de envio.
+      </div>
+    </div>
+
+
+
+    <!--h1 style="text-align: center;">PAGO</h1>
 
     <div class="form-group">
       <label for="">Nombre como en la tarjeta</label>
@@ -78,7 +97,7 @@
       <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
         <div *ngIf="city.errors.required">City is required.</div>
       </div>
-    </div>
+    </div-->
     <button (click)="placeOrder()" class="btn btn-primary">
       Place Order
     </button>

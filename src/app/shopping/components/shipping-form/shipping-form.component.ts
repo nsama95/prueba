@@ -5,6 +5,9 @@ import { AuthService } from 'shared/services/auth.service';
 import { OrderService } from 'shared/services/order.service';
 import { Router } from '@angular/router';
 import { ShoppingCart } from 'shared/models/ShoppingCart';
+import { ZonasService } from 'shared/services/zonas.service';
+import { Zonas } from 'shared/models/zonas';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shipping-form',
@@ -16,23 +19,47 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
   shipping: any = {};
   userId: string;
   userSub: Subscription;
-
+  zonas$;
+  zonaFinal: Zonas = {
+    name: '',
+    price:0,
+    id:'' 
+  };
   constructor(
     private authService: AuthService,
     private orderService: OrderService,
-    private router: Router
+    private router: Router,
+    public zonasServices:ZonasService,
   ) {}
 
   ngOnInit(): void {
+    this.zonas$ = this.zonasServices.getAll();
     this.userSub = this.authService.user$.subscribe(
       (user) => (this.userId = user.uid)
     );
   }
 
   async placeOrder() {
-    let order = new Order(this.userId, this.shipping, this.cart);
+   // console.log(JSON.stringify(this.shipping));
+   
+   /*  await this.zonasServices.get(this.shipping.city).subscribe((p) => {
+   // console.log('result',p);
+      this.zonaFinal.price=p.price;
+      this.zonaFinal.name=p.name;
+    });*/
+    const p = await new Promise<any>((resolve, reject) => {
+      this.zonasServices.get(this.shipping.city).subscribe(
+        (result) => resolve(result),
+        (error) => reject(error)
+      );
+    });
+      
+    this.shipping.price=p.price;
+    this.shipping.city=p.name;
+    console.log('cart form'+JSON.stringify(this.shipping));
+    let order = new Order(this.userId, this.shipping,this.cart);
     let result = await this.orderService.placeOrder({ ...order });
-    this.router.navigate(['order-success', result.id]);
+   this.router.navigate(['order-success', result.id]);
   }
 
   ngOnDestroy() {

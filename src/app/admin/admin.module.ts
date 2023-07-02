@@ -17,6 +17,10 @@ import { HomeComponent } from 'core/components/home/home.component';
 import { AdminCategoriesComponent } from './components/admin-categories/admin-categories.component';
 import { AdminEmployeeComponent } from './components/admin-employee/admin-employee.component';
 import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
+import { CategorieFormComponent } from './components/categorie-form/categorie-form.component';
+import { AdminZonasComponent } from './components/admin-zonas/admin-zonas.component';
+import { ZonasFormComponent } from './components/zonas-form/zonas-form.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +32,10 @@ import { EmployeeFormComponent } from './components/employee-form/employee-form.
     AdminCategoriesComponent,
     AdminEmployeeComponent,
     EmployeeFormComponent,
+    CategorieFormComponent,
+    AdminZonasComponent,
+    ZonasFormComponent,
+
   ],
   imports: [
     CommonModule,
@@ -76,6 +84,36 @@ import { EmployeeFormComponent } from './components/employee-form/employee-form.
           {
             path: 'employee/:id',
             component: EmployeeFormComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
+          {
+            path: 'categories',
+            component: AdminCategoriesComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
+          {
+            path: 'categories/new',
+            component: CategorieFormComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
+          {
+            path: 'categories/:id',
+            component: CategorieFormComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
+          {
+            path: 'zonas',
+            component: AdminZonasComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
+          {
+            path: 'zonas/new',
+            component: ZonasFormComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
+          {
+            path: 'zonas/:id',
+            component: ZonasFormComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
         ],
