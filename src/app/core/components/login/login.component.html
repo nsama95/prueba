@@ -4,11 +4,6 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,42 +16,39 @@
 </head>
 
 <body>
-
-    <div class="login-card-container">
-        <button value="inicio" [routerLink]="['/main']">Volver a Inicio</button>
         <div class="login-card">
-            <div class="login-card-logo">
-                <img src="../../../assets/img/logo.png" alt="logo">
-            </div>
+            <img src="../../../assets/img/logo.png" alt="logo">
             <br>
             <br>
             <br>
             <br>
             <br>
-            <div class="login-card-header">
-                <h1>INICIAR SESIÓN</h1>
-                <div>Por favor ingresa a tu cuenta para poder realizar la compra!</div>
-            </div>
             <form class="login-card-form" [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+
+                   <h1>INICIAR SESIÓN</h1>
+                    <h4>Por favor ingresa a tu cuenta para poder realizar la compra!</h4>
                 <div class="form-item">
+
                     <input type="text" placeholder="Usuario" id="emailForm" formControlName="email" style="text-align: center;"
                     autofocus required>
                 </div>
+                <br>
                 <div class="form-item">
                     <input type="password" placeholder="Contraseña" id="passwordForm" formControlName="password" style="text-align: center;"
                      required>
                 </div>
-                <div class="form-item-other">
-                    <!-- <a href="#">I forgot my password!</a> -->
-                </div>
-                <button type="submit" value="Enviar" >Iniciar Sesión</button>
+                <br>
+                <button type="submit" value="Enviar" class="" >
+                  Iniciar Sesion
+                </button>
+
             </form>
             <div class="login-card-footer">
                 Todavía no tenes una cuenta? <a [routerLink]="['/registro']">Registrate.</a>
             </div>
         </div>
 
-    </div>
+
 
 </body>
 

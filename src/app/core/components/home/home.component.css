@@ -198,10 +198,7 @@ header {
 
 }
 
-.imgs {
-  display: flex;
-  justify-content: center;
-}
+
 
 .imgs img {
   width: 250px;
@@ -356,10 +353,12 @@ footer {
 
   .group-services {
     flex-direction: column;
+
   }
 
   .services {
     margin-bottom: 20px;
+    margin: auto;
 
   }
 

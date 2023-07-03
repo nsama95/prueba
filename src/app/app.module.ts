@@ -22,7 +22,6 @@ import { OrderAuthguardService } from './shopping/services/order-authguard.servi
 import { ShoppingModule } from './shopping/shopping.module';
 import { HomeComponent } from 'core/components/home/home.component';
 import { RegistrarComponent } from 'core/components/registrar/registrar.component';
-
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
   imports: [

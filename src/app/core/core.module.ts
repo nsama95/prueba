@@ -7,9 +7,10 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {RegistrarComponent} from './components/registrar/registrar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon'
 @NgModule({
   declarations: [NavbarComponent, HomeComponent, LoginComponent, RegistrarComponent],
   exports: [NavbarComponent],
-  imports: [CommonModule, RouterModule.forChild([]), NgbModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule.forChild([]), NgbModule, FormsModule, ReactiveFormsModule, MatIconModule],
 })
 export class COREModule {}
