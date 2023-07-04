@@ -8,6 +8,7 @@ import { ShoppingCart } from 'shared/models/ShoppingCart';
 import { ZonasService } from 'shared/services/zonas.service';
 import { Zonas } from 'shared/models/zonas';
 import { first } from 'rxjs/operators';
+import { CategoriesService } from 'shared/services/categories.service';
 
 @Component({
   selector: 'app-shipping-form',
@@ -25,11 +26,13 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     price:0,
     id:'' 
   };
+  pago:any={};
   constructor(
     private authService: AuthService,
     private orderService: OrderService,
     private router: Router,
     public zonasServices:ZonasService,
+    public categorieServices: CategoriesService
   ) {}
 
   ngOnInit(): void {
@@ -57,9 +60,11 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     this.shipping.price=p.price;
     this.shipping.city=p.name;
     console.log('cart form'+JSON.stringify(this.shipping));
-    let order = new Order(this.userId, this.shipping,this.cart);
+    
+    let pago= this.categorieServices.createPago(this.pago);
+    if(pago){let order = new Order(this.userId, this.shipping,this.cart);
     let result = await this.orderService.placeOrder({ ...order });
-   this.router.navigate(['order-success', result.id]);
+   this.router.navigate(['order-success', result.id]);}
   }
 
   ngOnDestroy() {

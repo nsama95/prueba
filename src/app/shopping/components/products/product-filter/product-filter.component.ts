@@ -16,4 +16,7 @@ export class ProductFilterComponent implements OnInit {
   ngOnInit(): void {
     this.categories$ = this.categoriesService.getAll();
   }
+ /* redirec(){
+
+  }*/
 }

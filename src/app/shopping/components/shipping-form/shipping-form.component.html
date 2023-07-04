@@ -46,47 +46,51 @@
 
     <div class="form-group">
       <label for="">Nombre como en la tarjeta</label>
-      <input #name="ngModel" name="name" [(ngModel)]="shipping.name" type="text" class="form-control"
+      <input #name="ngModel" name="name" [(ngModel)]="pago.name" type="text" class="form-control"
         placeholder="Nombre" required />
       <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-        <div *ngIf="name.errors.required">Name is required.</div>
+        <div *ngIf="name.errors.required">Ingrese nombre.</div>
       </div>
     </div>
     <div class="form-group">
       <label for="">Numero tarjeta</label>
-      <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping.addressLine1" type="text"
-        class="form-control" placeholder="Direccion" required />
-      <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
-        <div *ngIf="addressLine1.errors.required">
-          Address Line 1 is required.
+      <input #numTarjeta="ngModel" name="numTarjeta" [(ngModel)]="pago.numTarjeta" type="number"
+        class="form-control" placeholder="Numero de tarjeta" required />
+      <div class="alert alert-danger" *ngIf="numTarjeta.touched && numTarjeta.invalid">
+        <div *ngIf="numTarjeta.errors.required">
+          El numero de la tarjeta es requerido.
         </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="">Codigo seguridad</label>
-      <input #city="ngModel" name="city" [(ngModel)]="shipping.city" type="text" class="form-control"
-        placeholder="Ciudad" required />
-      <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
-        <div *ngIf="city.errors.required">City is required.</div>
+      <input #pin="ngModel" name="pin" [(ngModel)]="pago.pin" type="number" class="form-control"
+        placeholder="Pin" required />
+      <div class="alert alert-danger" *ngIf="pin.touched && pin.invalid">
+        <div *ngIf="pin.errors.required">Ingrese pin.</div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="">Fecha vencimiento</label>
-      <input #city="ngModel" name="city" [(ngModel)]="shipping.city" type="text" class="form-control"
-        placeholder="Ciudad" required />
-      <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
-        <div *ngIf="city.errors.required">City is required.</div>
+     
+      <input #mes="ngModel" name="mes" [(ngModel)]="pago.mes" type="number" class="form-control"
+        placeholder="Mes" required />
+       <br>
+        <input #anio="ngModel" name="anio" [(ngModel)]="pago.anio" type="text" class="form-control"
+        placeholder="Año" required />
+      <div class="alert alert-danger" *ngIf="anio.touched && anio.invalid">
+        <div *ngIf="anio.errors.required">ingrese fecha.</div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="">DNI</label>
-      <input #city="ngModel" name="city" [(ngModel)]="shipping.city" type="text" class="form-control"
-        placeholder="Ciudad" required />
-      <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
-        <div *ngIf="city.errors.required">City is required.</div>
+      <input #dni="ngModel" name="dni" [(ngModel)]="pago.dni" type="text" class="form-control"
+        placeholder="DNI" required />
+      <div class="alert alert-danger" *ngIf="dni.touched && dni.invalid">
+        <div *ngIf="dni.errors.required">Ingrese DNI.</div>
       </div>
     </div>
     <button (click)="placeOrder()" class="btn btn-primary">

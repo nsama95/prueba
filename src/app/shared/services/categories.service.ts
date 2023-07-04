@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Categories } from 'shared/models/categories';
+import { Pago } from 'shared/models/pago';
 @Injectable({
   providedIn: 'root',
 })
@@ -36,5 +37,8 @@ export class CategoriesService {
     return this.db
       .collection('profile', (catRef) => catRef.orderBy('role', 'asc'))
       .valueChanges({ idField: 'id' });
+  }
+  createPago(product: Pago) {
+    return this.db.collection('pago').add(product);
   }
 }
