@@ -1,21 +1,12 @@
 <div class="orden">
   <form #f="ngForm" style="left: 10px; position: relative;">
     <div class="form-group">
-      <h1 style="text-align: center;"></h1>
-      <label for="">Nombre</label>
-      <input #name="ngModel" name="name" [(ngModel)]="shipping.name" type="text" class="form-control"
-        placeholder="Nombre" required />
-      <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-        <div *ngIf="name.errors.required">Name is required.</div>
-      </div>
-    </div>
-    <div class="form-group">
       <label for="">Dirección</label>
       <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping.addressLine1" type="text"
         class="form-control" placeholder="Direccion" required />
       <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
         <div *ngIf="addressLine1.errors.required">
-          Address Line 1 is required.
+         La direccion es requerida.
         </div>
       </div>
     </div>
@@ -51,7 +42,7 @@
 
 
 
-    <!--h1 style="text-align: center;">PAGO</h1>
+    <h1 style="text-align: center;">PAGO</h1>
 
     <div class="form-group">
       <label for="">Nombre como en la tarjeta</label>
@@ -97,9 +88,9 @@
       <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
         <div *ngIf="city.errors.required">City is required.</div>
       </div>
-    </div-->
+    </div>
     <button (click)="placeOrder()" class="btn btn-primary">
-      Place Order
+      Confirmar compra
     </button>
   </form>
 </div>

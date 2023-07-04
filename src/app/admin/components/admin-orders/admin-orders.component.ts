@@ -20,7 +20,7 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
   filteredOrders: Order[];
   orders: Order[];
   orderSub: Subscription;
-  numEnvio: number=null;
+  numEnvio: number;
 
   @ViewChild('idQuery') idQuery: ElementRef;
   @ViewChild('customerQuery') customerQuery: ElementRef;
@@ -74,8 +74,8 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
             stateUpdate = 'enviado' ;
             break;
     };
-//console.log(stateUpdate);
-    this.orderService.updateStateOrder(order,stateUpdate);
+console.log(stateUpdate);
+    this.orderService.updateStateOrder(order,stateUpdate,0);
   }
 
   editStateAndShipping(order :Order,state){

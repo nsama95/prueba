@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 import { Employee } from 'shared/models/employee';
 import { CategoriesService } from 'shared/services/categories.service';
 import { EmployeeService } from 'shared/services/employee.service';
+
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -42,7 +43,7 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   save() {
-    // If the page has an id parameter 'admin/products/:id' the update method will be called
+   
     if (this.id) {
       this.employeeService
         .update(this.employee, this.id)
@@ -55,7 +56,7 @@ export class EmployeeFormComponent implements OnInit {
           );
         });
     } else {
-      // if the id parameter is not present the product will be saved as a new product
+     
       this.employeeService
         .create(this.employee)
         .then(() => {

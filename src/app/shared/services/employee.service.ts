@@ -6,7 +6,6 @@ import { ToastrService } from 'ngx-toastr';
 import { ProductTableService } from 'admin/services/product-table.service';
 import { firestore } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AppUser } from 'shared/models/app-user';
 
 @Injectable({
   providedIn: 'root',

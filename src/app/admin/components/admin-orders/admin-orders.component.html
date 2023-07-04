@@ -46,8 +46,8 @@
          <button *ngIf="order.state=='Confirmado'" (click)="editState(order,order.state)">Empaquetar</button>
          <button *ngIf="order.state=='empaquetado'"(click)="editState(order,order.state)">Enviar al Correo</button>
 
-         <input *ngIf="order.state=='enviado'&& order.numEnvio==null" type="number"  [(ngModel)]="numEnvio">
-         <button *ngIf="order.state=='enviado'&& order.numEnvio==null"(click)="editStateAndShipping(order,order.state)">Cargar numero de envio</button>
+         <input *ngIf="order.state=='enviado'&& order.numEnvio==0" type="number"  [(ngModel)]="numEnvio">
+         <button *ngIf="order.state=='enviado'&& order.numEnvio==0"(click)="editStateAndShipping(order,order.state)">Cargar numero de envio</button>
               <a *ngIf="order.numEnvio">Numero de envio: {{order.numEnvio}}</a>
         </td>
       </tr>

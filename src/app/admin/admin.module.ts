@@ -76,7 +76,7 @@ import { EmployeeAuthGuardService } from './services/employee-auth-guard.service
             path: 'employee',
             component: AdminEmployeeComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
-          },
+                     },
           {
             path: 'employee/new',
             component: EmployeeFormComponent,
@@ -118,7 +118,7 @@ import { EmployeeAuthGuardService } from './services/employee-auth-guard.service
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
         ],
-      },{
+      }/*,{
         path: 'employee',
         children: [
           {
@@ -172,7 +172,7 @@ import { EmployeeAuthGuardService } from './services/employee-auth-guard.service
             canActivate: [AuthguardService,EmployeeAuthGuardService],
           },
         ],
-      }
+      }*/
     ]),
   ],
   providers: [AdminAuthGuardService, ProductTableService],
