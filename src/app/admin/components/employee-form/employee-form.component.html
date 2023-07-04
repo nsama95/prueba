@@ -1,6 +1,12 @@
 <br><br><br><br><br>
 <br><br><br><br><br>
+<<<<<<< HEAD
 
+=======
+<p style="padding: 5%;">
+  <a routerLink="/admin/employee" class="btn btn-primary">Atras</a>
+</p>
+>>>>>>> 32a0b54abe348818cabef8a470a8af8ec7d28dd5
 <div class="row"style="padding: 5%;">
   <div class="col-md-6">
     <form #f="ngForm" (ngSubmit)="save()">
@@ -74,7 +80,12 @@
           type="text"
           class="form-control"
           [minlength]="6"
+<<<<<<< HEAD
           required/>
+=======
+          required
+        />
+>>>>>>> 32a0b54abe348818cabef8a470a8af8ec7d28dd5
         <div
           class="alert alert-danger"
           *ngIf="password.touched && password.invalid">

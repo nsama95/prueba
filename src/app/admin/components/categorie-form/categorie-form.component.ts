@@ -37,11 +37,16 @@ categorie: Categories = {
   }
 
   save() {
+<<<<<<< HEAD
    
+=======
+    // If the page has an id parameter 'admin/products/:id' the update method will be called
+>>>>>>> 32a0b54abe348818cabef8a470a8af8ec7d28dd5
     if (this.id) {
       this.categoriesService
         .update(this.categorie, this.id)
         .then(() => {
+<<<<<<< HEAD
           this.toast.success('Categoria editada correctamente');
         })
         .catch(() => {
@@ -58,6 +63,24 @@ categorie: Categories = {
         })
         .catch(() => {
           this.toast.error('hubo un error');
+=======
+          this.toast.success('Product has been successfully updated.');
+        })
+        .catch(() => {
+          this.toast.error(
+            'An error occurred. The product has not been updated.'
+          );
+        });
+    } else {
+      // if the id parameter is not present the product will be saved as a new product
+      this.categoriesService
+        .create(this.categorie)
+        .then(() => {
+          this.toast.success('Product has been added.');
+        })
+        .catch(() => {
+          this.toast.error('An Error Occurred, product has not been saved.');
+>>>>>>> 32a0b54abe348818cabef8a470a8af8ec7d28dd5
         });
     }
 
@@ -66,6 +89,7 @@ categorie: Categories = {
   }
 
   delete() {
+<<<<<<< HEAD
     if (confirm('Estas seguro de borrar esta categoria?')) {
       this.categoriesService
         .delete(this.id)
@@ -74,6 +98,16 @@ categorie: Categories = {
         })
         .catch(() => {
           this.toast.error('hubo un error.');
+=======
+    if (confirm('Are you sure you want to delete this product?')) {
+      this.categoriesService
+        .delete(this.id)
+        .then(() => {
+          this.toast.success('Product has been deleted.');
+        })
+        .catch(() => {
+          this.toast.error('An Error Occurred, product has not been deleted.');
+>>>>>>> 32a0b54abe348818cabef8a470a8af8ec7d28dd5
         });
 
   

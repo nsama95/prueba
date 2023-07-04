@@ -8,7 +8,10 @@ import { ShoppingCart } from 'shared/models/ShoppingCart';
 import { ZonasService } from 'shared/services/zonas.service';
 import { Zonas } from 'shared/models/zonas';
 import { first } from 'rxjs/operators';
+<<<<<<< HEAD
 import { CategoriesService } from 'shared/services/categories.service';
+=======
+>>>>>>> 32a0b54abe348818cabef8a470a8af8ec7d28dd5
 
 @Component({
   selector: 'app-shipping-form',
@@ -26,7 +29,10 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     price:0,
     id:'' 
   };
+<<<<<<< HEAD
   pago:any={};
+=======
+>>>>>>> 32a0b54abe348818cabef8a470a8af8ec7d28dd5
   constructor(
     private authService: AuthService,
     private orderService: OrderService,
@@ -60,11 +66,17 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     this.shipping.price=p.price;
     this.shipping.city=p.name;
     console.log('cart form'+JSON.stringify(this.shipping));
+<<<<<<< HEAD
     
     let pago= this.categorieServices.createPago(this.pago);
     if(pago){let order = new Order(this.userId, this.shipping,this.cart);
     let result = await this.orderService.placeOrder({ ...order });
    this.router.navigate(['order-success', result.id]);}
+=======
+    let order = new Order(this.userId, this.shipping,this.cart);
+    let result = await this.orderService.placeOrder({ ...order });
+   this.router.navigate(['order-success', result.id]);
+>>>>>>> 32a0b54abe348818cabef8a470a8af8ec7d28dd5
   }
 
   ngOnDestroy() {

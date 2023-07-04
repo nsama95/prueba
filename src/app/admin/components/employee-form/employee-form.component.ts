@@ -5,7 +5,10 @@ import { first } from 'rxjs/operators';
 import { Employee } from 'shared/models/employee';
 import { CategoriesService } from 'shared/services/categories.service';
 import { EmployeeService } from 'shared/services/employee.service';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32a0b54abe348818cabef8a470a8af8ec7d28dd5
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',

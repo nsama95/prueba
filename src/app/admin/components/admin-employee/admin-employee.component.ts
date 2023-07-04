@@ -18,11 +18,13 @@ export class AdminEmployeeComponent implements OnInit {
   employee: Employee[];
   employeeSubscription: Subscription;
   constructor( private employeeService: EmployeeService, private toast: ToastrService,) { }
+  employee: Employee[];
+  employeeSubscription: Subscription;
+  constructor( private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
-    this.employeeSubscription = this.employeeService.getAll().subscribe((p) => {
-      this.employee = p;
-      console.log(JSON.stringify( this.employee));
+    this.productsSubscription = this.productService.getAll().subscribe((p) => {
+      this.products = p;
      //this.filter(this.query.nativeElement.value);
     });
     
