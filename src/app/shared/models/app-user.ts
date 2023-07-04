@@ -4,5 +4,5 @@ export interface AppUser {
   email: string;
   password: string;
   isAdmin?: boolean;
-  isEmploye?:boolean;
+  isEmployee?:boolean;
 }

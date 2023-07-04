@@ -84,6 +84,18 @@
                 >Editar Página</a
               >
             </ng-container>
+            <ng-container *ngIf="appUser.isEmployee">
+              <a class="dropdown-item" routerLink="/employee/orders"
+                >Orderes</a
+              >
+              <a class="dropdown-item" routerLink="/employee/products"
+                >Productos</a
+              >
+              <a class="dropdown-item" routerLink="/employee/categories"
+              >Categorias</a>
+              <a class="dropdown-item" routerLink="/employee/zonas"
+              >Zonas de envio</a>
+            </ng-container>
             <a class="dropdown-item" (click)="logout()" routerLink="/login"
               >Logout</a
             >

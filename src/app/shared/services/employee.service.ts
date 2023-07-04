@@ -68,7 +68,7 @@ export class EmployeeService {
       password: user.password,
      // photoURL: user.photoURL,
       isAdmin: user.isAdmin,
-      isEmployee:user.isEmploye,
+      isEmployee:user.isEmployee,
 
       },
       { merge: true }
@@ -84,6 +84,7 @@ export class EmployeeService {
     return this.fbAuth.sendPasswordResetEmail(email)
       .then(() => {
         console.log('Correo de restablecimiento de contraseña enviado');
+        // Aquí puedes realizar cualquier acción adicional después de enviar el correo de restablecimiento
       })
       .catch(error => {
         console.log('Error al enviar el correo de restablecimiento de contraseña:', error);

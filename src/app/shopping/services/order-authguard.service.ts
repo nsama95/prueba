@@ -37,7 +37,7 @@ export class OrderAuthguardService implements CanActivate {
       return true;
     } else {
       this.router.navigate(['/']);
-      this.toast.error('You are not authorized to access this order.');
+      this.toast.error('No tenes acceso.');
       return false;
     }
   }

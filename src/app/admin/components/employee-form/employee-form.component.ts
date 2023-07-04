@@ -18,7 +18,7 @@ export class EmployeeFormComponent implements OnInit {
     email: '',
     password: '',
     isAdmin: null,
-    isEmploye: null,
+    isEmployee: null,
     
   };
 
@@ -42,7 +42,7 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   save() {
-   
+    // If the page has an id parameter 'admin/products/:id' the update method will be called
     if (this.id) {
       this.employeeService
         .update(this.employee, this.id)
@@ -55,7 +55,7 @@ export class EmployeeFormComponent implements OnInit {
           );
         });
     } else {
-     
+      // if the id parameter is not present the product will be saved as a new product
       this.employeeService
         .create(this.employee)
         .then(() => {

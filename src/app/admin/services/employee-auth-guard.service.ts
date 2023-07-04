@@ -13,6 +13,6 @@ export class EmployeeAuthGuardService implements CanActivate {
   canActivate() {
     return this.auth.user$
       .pipe(switchMap((user) => this.userService.getUser(user.uid)))
-      .pipe(map((user) => user.isEmploye));
+      .pipe(map((user) => user.isEmployee));
   }
 }

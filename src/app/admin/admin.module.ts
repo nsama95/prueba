@@ -60,12 +60,12 @@ import { EmployeeAuthGuardService } from './services/employee-auth-guard.service
           {
             path: 'products/new',
             component: ProductFormComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService,EmployeeAuthGuardService],
+            canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
             path: 'products/:id',
             component: ProductFormComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService,EmployeeAuthGuardService],
+            canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
             path: 'products',
@@ -90,35 +90,89 @@ import { EmployeeAuthGuardService } from './services/employee-auth-guard.service
           {
             path: 'categories',
             component: AdminCategoriesComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService,EmployeeAuthGuardService],
+            canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
             path: 'categories/new',
             component: CategorieFormComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService,EmployeeAuthGuardService],
+            canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
             path: 'categories/:id',
             component: CategorieFormComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService,EmployeeAuthGuardService],
+            canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
             path: 'zonas',
             component: AdminZonasComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService,EmployeeAuthGuardService],
+            canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
             path: 'zonas/new',
             component: ZonasFormComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService,EmployeeAuthGuardService],
+            canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
             path: 'zonas/:id',
             component: ZonasFormComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService,EmployeeAuthGuardService],
+            canActivate: [AuthguardService, AdminAuthGuardService],
           },
         ],
-      },
+      },{
+        path: 'employee',
+        children: [
+          {
+            path: 'orders',
+            component: AdminOrdersComponent,
+            canActivate: [AuthguardService, EmployeeAuthGuardService],
+          },
+          {
+            path: 'products/new',
+            component: ProductFormComponent,
+            canActivate: [AuthguardService, EmployeeAuthGuardService],
+          },
+          {
+            path: 'products/:id',
+            component: ProductFormComponent,
+            canActivate: [AuthguardService, EmployeeAuthGuardService],
+          },
+          {
+            path: 'products',
+            component: AdminProductsComponent,
+            canActivate: [AuthguardService, EmployeeAuthGuardService],
+          },
+          {
+            path: 'categories',
+            component: AdminCategoriesComponent,
+            canActivate: [AuthguardService, EmployeeAuthGuardService],
+          },
+          {
+            path: 'categories/new',
+            component: CategorieFormComponent,
+            canActivate: [AuthguardService,EmployeeAuthGuardService],
+          },
+          {
+            path: 'categories/:id',
+            component: CategorieFormComponent,
+            canActivate: [AuthguardService,EmployeeAuthGuardService],
+          },
+          {
+            path: 'zonas',
+            component: AdminZonasComponent,
+            canActivate: [AuthguardService,EmployeeAuthGuardService],
+          },
+          {
+            path: 'zonas/new',
+            component: ZonasFormComponent,
+            canActivate: [AuthguardService,EmployeeAuthGuardService],
+          },
+          {
+            path: 'zonas/:id',
+            component: ZonasFormComponent,
+            canActivate: [AuthguardService,EmployeeAuthGuardService],
+          },
+        ],
+      }
     ]),
   ],
   providers: [AdminAuthGuardService, ProductTableService],

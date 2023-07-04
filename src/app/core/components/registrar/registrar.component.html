@@ -27,8 +27,13 @@
           <br>
             <form class="login-card-form" [formGroup]="formReg" (ngSubmit)="onSubmit()">
               <h1>REGISTRO</h1>
+              <div class="form-item">
+                <input type="text" placeholder="Nombre" id="nameForm" formControlName="name" style="text-align: center;"
+                autofocus required>
+            </div>
+            <br>
                 <div class="form-item">
-                    <input type="text" placeholder="Usuario" id="emailForm" formControlName="email" style="text-align: center;"
+                    <input type="text" placeholder="Email" id="emailForm" formControlName="email" style="text-align: center;"
                     autofocus required>
                 </div>
                 <br>

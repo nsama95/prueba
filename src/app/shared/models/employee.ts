@@ -3,6 +3,6 @@ export interface Employee {
   name: string;
   email:string;
   password:string;
-  isEmploye?:boolean;
+  isEmployee?:boolean;
   isAdmin?: boolean;
 }
