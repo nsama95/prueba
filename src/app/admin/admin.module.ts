@@ -20,10 +20,7 @@ import { EmployeeFormComponent } from './components/employee-form/employee-form.
 import { CategorieFormComponent } from './components/categorie-form/categorie-form.component';
 import { AdminZonasComponent } from './components/admin-zonas/admin-zonas.component';
 import { ZonasFormComponent } from './components/zonas-form/zonas-form.component';
-<<<<<<< HEAD
 import { EmployeeAuthGuardService } from './services/employee-auth-guard.service';
-=======
->>>>>>> 32a0b54abe348818cabef8a470a8af8ec7d28dd5
 
 
 @NgModule({

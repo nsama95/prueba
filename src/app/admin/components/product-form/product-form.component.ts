@@ -26,7 +26,8 @@ export class ProductFormComponent implements OnInit {
     category: '',
     imageUrl: '',
   };
-
+  imagen;
+idprueba:String;
   constructor(
     private categoriesService: CategoriesService,
     private productService: ProductService,
@@ -37,7 +38,8 @@ export class ProductFormComponent implements OnInit {
   ) {this.images = [];}
   ngOnInit(): void {
     this.categories$ = this.categoriesService.getAll();
-
+    this.imagen=false;
+    //this.getImages();
     this.id = this.route.snapshot.paramMap.get('id');
 
     if (this.id) {
@@ -90,5 +92,54 @@ export class ProductFormComponent implements OnInit {
         The user will be redirected to AdminProducts and will receive a toast notification */
       this.router.navigate(['/admin/products']);
     }
+  }
+  uploadImage($event: any) {
+    this.imagen=true;
+    const file = $event.target.files[0];
+    console.log(file);
+    const filePath = `images/${file.name}`;
+    const fileRef = this.storage.ref(filePath);
+    const uploadTask = this.storage.upload(filePath, file);
+    uploadTask.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe(url => {
+          console.log('Image uploaded');
+          console.log(JSON.stringify(url));
+         this.product.imageUrl=url;
+         this.imagen=false;
+         console.log(this.product.imageUrl);
+          //this.getImages();
+        });
+      })
+    ).subscribe();
+  }
+  getImages() {
+    const imagesRef = this.storage.ref('images');
+
+    imagesRef.listAll()
+      .subscribe(async response => {
+        console.log(response);
+        this.images = [];
+        for (let item of response.items) {
+          const url = await item.getDownloadURL();
+
+          //this.images.push(url);
+        }
+      })
+     
+  }
+  getImagesId() {
+   let prueba='Captura.PNG';
+    const imageRef = this.storage.ref(`images/${prueba}`);
+  imageRef.getDownloadURL()
+    .subscribe(url => {
+      console.log(url);
+      //this.idprueba=url;
+      this.product.imageUrl=url;
+      // Aquí puedes realizar cualquier operación con la URL de la foto en particular
+    }, error => {
+      console.log(error);
+    });
+     
   }
 }
