@@ -74,10 +74,19 @@ export class EmployeeService {
       { merge: true }
     )
     .then(() => {
-      console.log('user has been successfully saved to the database.');
+      console.log('correcto');
     })
     .catch(() => {
-      console.error('an error has occurred');
+      console.error('error');
     });
+  }
+  resetPassword(email: string) {
+    return this.fbAuth.sendPasswordResetEmail(email)
+      .then(() => {
+        console.log('Correo de restablecimiento de contraseña enviado');
+      })
+      .catch(error => {
+        console.log('Error al enviar el correo de restablecimiento de contraseña:', error);
+      });
   }
 }

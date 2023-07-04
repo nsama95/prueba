@@ -6,6 +6,7 @@ import {  Component,
 import { Employee } from 'shared/models/employee';
 import { Subscription } from 'rxjs';
 import { EmployeeService } from 'shared/services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-employee',
@@ -16,7 +17,7 @@ export class AdminEmployeeComponent implements OnInit {
   @ViewChild('query') query: ElementRef;
   employee: Employee[];
   employeeSubscription: Subscription;
-  constructor( private employeeService: EmployeeService) { }
+  constructor( private employeeService: EmployeeService, private toast: ToastrService,) { }
 
   ngOnInit(): void {
     this.employeeSubscription = this.employeeService.getAll().subscribe((p) => {
@@ -25,6 +26,15 @@ export class AdminEmployeeComponent implements OnInit {
      //this.filter(this.query.nativeElement.value);
     });
     
+  }
+  resetPassword(email){
+    this.employeeService.resetPassword(email).then(() => {
+      this.toast.success('Correo de restablecimiento de contraseña enviado');
+    }).catch(() => {
+      this.toast.error(
+        'Hubo un error'
+      );
+    });;
   }
 
 }

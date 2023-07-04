@@ -38,7 +38,14 @@
         <td>{{ p.email }}</td>
         <td>{{ p.isAdmin}}|{{p.isEmploye}}</td>
         <td>
-          <a [routerLink]="['/admin/employee/', p.id]">Edit</a>
+          <a [routerLink]="['/admin/employee/', p.id]">Editar</a>
+        </td>
+        <td> 
+          <button type="button"
+          class="btn-primary"
+          (click)="resetPassword(p.email)">
+            Recuperar contraseña
+        </button>
         </td>
       </tr>
     </tbody>

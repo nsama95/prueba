@@ -26,6 +26,7 @@ export class ProductFormComponent implements OnInit {
     category: '',
     imageUrl: '',
   };
+  imagen;
 idprueba:String;
   constructor(
     private categoriesService: CategoriesService,
@@ -37,7 +38,8 @@ idprueba:String;
   ) {this.images = [];}
   ngOnInit(): void {
     this.categories$ = this.categoriesService.getAll();
-    this.getImages();
+    this.imagen=false;
+    //this.getImages();
     this.id = this.route.snapshot.paramMap.get('id');
 
     if (this.id) {
@@ -49,44 +51,41 @@ idprueba:String;
   }
 
   save() {
-    // If the page has an id parameter 'admin/products/:id' the update method will be called
     if (this.id) {
+      //this.uploadImage($event,this.product);
       this.productService
         .update(this.product, this.id)
         .then(() => {
-          this.toast.success('Product has been successfully updated.');
+          this.toast.success('Producto editado.');
         })
         .catch(() => {
           this.toast.error(
-            'An error occurred. The product has not been updated.'
+            'Hubo un error.'
           );
         });
     } else {
-      // if the id parameter is not present the product will be saved as a new product
+      //this.uploadImage($event,this.product);
       this.productService
         .create(this.product)
         .then(() => {
-          this.toast.success('Product has been added.');
+          this.toast.success('Producto creado.');
         })
         .catch(() => {
-          this.toast.error('An Error Occurred, product has not been saved.');
+          this.toast.error('Hubo un error');
         });
     }
-
-    /* upon saving, the user will NOT wait for the promise to resolve. 
-    The user will be redirected to AdminProducts and will receive a toast notification */
     this.router.navigate(['/admin/products']);
   }
 
   delete() {
-    if (confirm('Are you sure you want to delete this product?')) {
+    if (confirm('Estas seguro de borrar el producto?')) {
       this.productService
         .delete(this.id)
         .then(() => {
-          this.toast.success('Product has been deleted.');
+          this.toast.success('Producto eliminado.');
         })
         .catch(() => {
-          this.toast.error('An Error Occurred, product has not been deleted.');
+          this.toast.error('hubo un error.');
         });
 
       /* upon saving, the user will NOT wait for the promise to resolve. 
@@ -95,17 +94,20 @@ idprueba:String;
     }
   }
   uploadImage($event: any) {
+    this.imagen=true;
     const file = $event.target.files[0];
     console.log(file);
-
     const filePath = `images/${file.name}`;
     const fileRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, file);
-
     uploadTask.snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe(url => {
           console.log('Image uploaded');
+          console.log(JSON.stringify(url));
+         this.product.imageUrl=url;
+         this.imagen=false;
+         console.log(this.product.imageUrl);
           //this.getImages();
         });
       })
@@ -120,7 +122,8 @@ idprueba:String;
         this.images = [];
         for (let item of response.items) {
           const url = await item.getDownloadURL();
-          this.images.push(url);
+
+          //this.images.push(url);
         }
       })
      
@@ -128,7 +131,6 @@ idprueba:String;
   getImagesId() {
    let prueba='Captura.PNG';
     const imageRef = this.storage.ref(`images/${prueba}`);
-
   imageRef.getDownloadURL()
     .subscribe(url => {
       console.log(url);

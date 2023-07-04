@@ -93,10 +93,10 @@ export class AuthService {
       { merge: true }
     )
     .then(() => {
-      console.log('user has been successfully saved to the database.');
+      console.log('se creo');
     })
     .catch(() => {
-      console.error('an error has occurred');
+      console.error('error');
     });
   }
 
@@ -104,7 +104,7 @@ export class AuthService {
     this.fbAuth.signOut();
   }
 
-  get appUser$(): Observable<AppUser> {
+ get appUser$(): Observable<AppUser> {
     return this.user$.pipe(
       switchMap((user) => {
         if (user) {

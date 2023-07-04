@@ -1,8 +1,6 @@
 <br><br><br><br><br>
 <br><br><br><br><br>
-<p style="padding: 5%;">
-  <a routerLink="/admin/employee" class="btn btn-primary">Atras</a>
-</p>
+
 <div class="row"style="padding: 5%;">
   <div class="col-md-6">
     <form #f="ngForm" (ngSubmit)="save()">
@@ -66,7 +64,7 @@
           Ingrese rol.
         </div>
       </div>
-      <div class="form-group">
+      <div *ngIf="!id" class="form-group">
         <label for="password">Contraseña</label>
         <input
           #password="ngModel"
@@ -76,8 +74,7 @@
           type="text"
           class="form-control"
           [minlength]="6"
-          required
-        />
+          required/>
         <div
           class="alert alert-danger"
           *ngIf="password.touched && password.invalid">
@@ -85,20 +82,21 @@
           <div *ngIf="password.errors.minlength">La contraseña debe tener 6 caracteres</div>
         </div>
       </div>
+      <button
+      type="button"     
+      *ngIf="id"
+      class="btn btn-danger"
+      routerLink="/admin/employee">
+      Cancelar
+    </button>
       <button class="btn btn-primary" [disabled]="f.invalid">Guardar</button>
       <button
         type="button"
         (click)="delete()"
         *ngIf="id"
-        class="btn btn-danger"
+        class="btn"
       >
-        Borrar
-      </button>
+      <i class="fa fa-trash"></i></button>
     </form>
   </div>
-  <!--app-product-card
-    class="col-3 mx-auto"
-    [product]="product"
-    [showActions]="false"
-  ></app-product-card--->
 </div>

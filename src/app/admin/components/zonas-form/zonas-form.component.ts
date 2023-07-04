@@ -44,11 +44,11 @@ zonas: Zonas = {
       this.zonasService
         .update(this.zonas, this.id)
         .then(() => {
-          this.toast.success('Product has been successfully updated.');
+          this.toast.success('Tu zona editada correctamente.');
         })
         .catch(() => {
           this.toast.error(
-            'An error occurred. The product has not been updated.'
+            'Hubo un error'
           );
         });
     } else {
@@ -56,10 +56,10 @@ zonas: Zonas = {
       this.zonasService
         .create(this.zonas)
         .then(() => {
-          this.toast.success('Product has been added.');
+          this.toast.success('Zona creada correctamente.');
         })
         .catch(() => {
-          this.toast.error('An Error Occurred, product has not been saved.');
+          this.toast.error('Hubo un error');
         });
     }
 
@@ -68,14 +68,14 @@ zonas: Zonas = {
   }
 
   delete() {
-    if (confirm('Are you sure you want to delete this product?')) {
+    if (confirm('Estas seguro de borrar esta zona?')) {
       this.zonasService
         .delete(this.id)
         .then(() => {
-          this.toast.success('Product has been deleted.');
+          this.toast.success('Zona borrada');
         })
         .catch(() => {
-          this.toast.error('An Error Occurred, product has not been deleted.');
+          this.toast.error('Hubo un error');
         });
 
   

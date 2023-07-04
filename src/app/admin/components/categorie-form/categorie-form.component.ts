@@ -37,27 +37,27 @@ categorie: Categories = {
   }
 
   save() {
-    // If the page has an id parameter 'admin/products/:id' the update method will be called
+   
     if (this.id) {
       this.categoriesService
         .update(this.categorie, this.id)
         .then(() => {
-          this.toast.success('Product has been successfully updated.');
+          this.toast.success('Categoria editada correctamente');
         })
         .catch(() => {
           this.toast.error(
-            'An error occurred. The product has not been updated.'
+            'Hubo un error'
           );
         });
     } else {
-      // if the id parameter is not present the product will be saved as a new product
+     
       this.categoriesService
         .create(this.categorie)
         .then(() => {
-          this.toast.success('Product has been added.');
+          this.toast.success('Categoria creada correctamente');
         })
         .catch(() => {
-          this.toast.error('An Error Occurred, product has not been saved.');
+          this.toast.error('hubo un error');
         });
     }
 
@@ -66,14 +66,14 @@ categorie: Categories = {
   }
 
   delete() {
-    if (confirm('Are you sure you want to delete this product?')) {
+    if (confirm('Estas seguro de borrar esta categoria?')) {
       this.categoriesService
         .delete(this.id)
         .then(() => {
-          this.toast.success('Product has been deleted.');
+          this.toast.success('Categoria borrada.');
         })
         .catch(() => {
-          this.toast.error('An Error Occurred, product has not been deleted.');
+          this.toast.error('hubo un error.');
         });
 
   

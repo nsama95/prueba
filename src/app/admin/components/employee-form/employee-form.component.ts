@@ -42,27 +42,27 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   save() {
-    // If the page has an id parameter 'admin/products/:id' the update method will be called
+   
     if (this.id) {
       this.employeeService
         .update(this.employee, this.id)
         .then(() => {
-          this.toast.success('Product has been successfully updated.');
+          this.toast.success('Empleado editado correctamente');
         })
         .catch(() => {
           this.toast.error(
-            'An error occurred. The product has not been updated.'
+            'Hubo un error'
           );
         });
     } else {
-      // if the id parameter is not present the product will be saved as a new product
+     
       this.employeeService
         .create(this.employee)
         .then(() => {
-          this.toast.success('Product has been added.');
+          this.toast.success('Empleado creado correctamente');
         })
         .catch(() => {
-          this.toast.error('An Error Occurred, product has not been saved.');
+          this.toast.error('Hubo un error');
         });
     }
 
@@ -71,14 +71,14 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   delete() {
-    if (confirm('Are you sure you want to delete this product?')) {
+    if (confirm('Estas seguro de borrar este empleado?')) {
       this.employeeService
         .delete(this.id)
         .then(() => {
-          this.toast.success('Product has been deleted.');
+          this.toast.success('Empleado eliminado');
         })
         .catch(() => {
-          this.toast.error('An Error Occurred, product has not been deleted.');
+          this.toast.error('Hubo un error.');
         });
 
   
