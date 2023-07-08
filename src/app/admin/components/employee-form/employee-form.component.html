@@ -67,7 +67,7 @@
           Ingrese rol.
         </div>
       </div>
-      <div *ngIf="!id" class="form-group">
+      <div *ngIf="!uid" class="form-group">
         <label for="password">Contraseña</label>
         <input
           #password="ngModel"
@@ -87,7 +87,7 @@
       </div>
       <button
       type="button"     
-      *ngIf="id"
+
       class="btn btn-danger"
       routerLink="/admin/employee">
       Cancelar
@@ -96,7 +96,7 @@
       <button
         type="button"
         (click)="delete()"
-        *ngIf="id"
+        *ngIf="uid"
         class="btn"
       >
       <i class="fa fa-trash"></i></button>

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
+import { AppUser } from 'shared/models/app-user';
 import { Employee } from 'shared/models/employee';
+import { AuthService } from 'shared/services/auth.service';
 import { CategoriesService } from 'shared/services/categories.service';
 import { EmployeeService } from 'shared/services/employee.service';
 @Component({
@@ -12,7 +15,7 @@ import { EmployeeService } from 'shared/services/employee.service';
 })
 export class EmployeeFormComponent implements OnInit {
   categories$;
-  id?: string;
+  uid?: string;
   employee: Employee = {
     name: '',
     email: '',
@@ -21,21 +24,30 @@ export class EmployeeFormComponent implements OnInit {
     isEmployee: null,
     
   };
-
+user:AppUser;
+idUser;
   constructor(private categoriesService: CategoriesService,
     private employeeService: EmployeeService,
     private toast: ToastrService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private authServ:AuthService,
+    private fbAuth: AngularFireAuth) { }
 
-  ngOnInit(): void { 
+  async ngOnInit(): Promise<void> { 
+    this.authServ.appUser$.subscribe((user: AppUser) => {
+      this.user = user;
+    });
+    const user = await this.fbAuth.currentUser;
+  console.log(user.uid);
+  this.idUser=user.uid;
    this.categories$ = this.categoriesService.getRole();
 
-    this.id = this.route.snapshot.paramMap.get('id');
+    this.uid = this.route.snapshot.paramMap.get('uid');
 
-    if (this.id) {
+    if (this.uid) {
       this.employeeService
-        .get(this.id)
+        .get(this.uid)
         .pipe(first())
         .subscribe((p) => (this.employee = p));
     }
@@ -43,9 +55,9 @@ export class EmployeeFormComponent implements OnInit {
 
   save() {
    
-    if (this.id) {
+    if (this.uid) {
       this.employeeService
-        .update(this.employee, this.id)
+        .update(this.employee, this.uid,this.idUser)
         .then(() => {
           this.toast.success('Empleado editado correctamente');
         })
@@ -57,7 +69,7 @@ export class EmployeeFormComponent implements OnInit {
     } else {
      
       this.employeeService
-        .create(this.employee)
+        .create(this.employee,this.idUser)
         .then(() => {
           this.toast.success('Empleado creado correctamente');
         })
@@ -66,14 +78,14 @@ export class EmployeeFormComponent implements OnInit {
         });
     }
 
-   
-    this.router.navigate(['/admin/employee']);
+    setTimeout(() => {
+      this.router.navigate(['/admin/employee']);}, 700);
   }
 
   delete() {
     if (confirm('Estas seguro de borrar este empleado?')) {
       this.employeeService
-        .delete(this.id)
+        .delete(this.uid)
         .then(() => {
           this.toast.success('Empleado eliminado');
         })

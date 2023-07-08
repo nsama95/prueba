@@ -14,6 +14,7 @@ export class OrderSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     let total = 0;
+    console.log(this.order);
     this.order.items.forEach((item) => {
       total += item.totalPrice;
     });

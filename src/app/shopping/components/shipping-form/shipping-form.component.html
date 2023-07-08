@@ -1,5 +1,29 @@
 <div class="orden">
   <form #f="ngForm" style="left: 10px; position: relative;">
+    <div class="form-group" *ngIf="flagUser">
+      <label for="user">Selecione el cliente:</label>
+      <select
+      #user="ngModel"
+        [(ngModel)]="userId"
+        name="user"
+        id="user"
+        type="text"
+        class="form-control"
+        required
+      >
+        <option value=""></option>
+        <option
+          *ngFor="let u of usersCliente$ | async"
+          [value]="u.uid"
+          >{{ u.name }}</option
+        >
+      </select>
+   
+    </div>
+
+
+
+
     <div class="form-group">
       <label for="">Dirección</label>
       <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping.addressLine1" type="text"
@@ -31,16 +55,19 @@
           [value]="zonas.id"
           >{{ zonas.name }} -${{zonas.price }}</option
         >
+        
       </select>
+     
       <div
         class="alert alert-danger"
         *ngIf="city.touched && city.invalid"
       >
         Ingrese la ciudad de envio.
       </div>
+     
     </div>
-
-
+    <app-shopping-cart-summary [envio]="shipping.city"></app-shopping-cart-summary>
+   
 
 
 

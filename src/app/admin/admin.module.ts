@@ -83,7 +83,7 @@ import { EmployeeAuthGuardService } from './services/employee-auth-guard.service
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
-            path: 'employee/:id',
+            path: 'employee/:uid',
             component: EmployeeFormComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
           },

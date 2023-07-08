@@ -5,6 +5,7 @@ import { AppUser } from 'shared/models/app-user';
 import { UserService } from 'shared/services/user.service';
 import {MatIconModule} from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   formLogin: FormGroup;
   user : AppUser;
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router,private toast: ToastrService) {
 
       this.formLogin = new FormGroup({
       email: new FormControl(),
@@ -28,12 +29,18 @@ export class LoginComponent implements OnInit {
     console.log('login');
 
  this.authService.login(this.formLogin.value).then(response => {
-        console.log(response);
-        //this.user=response;
-        console.log('user'+JSON.stringify( this.user));
-        this.router.navigate(['/products']);
+        if(response){   console.log(response);
+          //this.user=response;
+          console.log('user'+JSON.stringify( this.user));
+          this.toast.success('Iniciaste sesion.Bienvenido!');
+          this.router.navigate(['/products']);
+        }else{ 
+            this.toast.error('Hubo un error.Intena nuevamente.');}
+     
       })
-      .catch(error => console.log(error));
+      .catch(error => {console.log(error)
+        this.toast.error('Hubo un error.Intena nuevamente.');
+      });
 
 
   }

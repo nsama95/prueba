@@ -10,7 +10,7 @@ import { Order } from 'shared/models/order';
 export class ShoppingCartSummaryComponent implements OnInit {
   @Input() cart: ShoppingCart;
   @Input() total?: number;
-
+  @Input() envio?: string;
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, Input } from '@angular/core';
 import { ProductService } from 'shared/services/product.service';
 import { Product } from 'shared/models/product';
 import { Observable, Subscription } from 'rxjs';
@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ShoppingCart } from 'shared/models/ShoppingCart';
+import { CategoriesService } from 'shared/services/categories.service';
 
 @Component({
   selector: 'app-products',
@@ -19,22 +20,28 @@ export class ProductsComponent implements OnInit {
   filteredProducts: Product[];
   cart: any;
   cart$: Observable<ShoppingCart>;
-
   cardsPerRow: number;
-
+  flag;
+  categories$: Observable<any>;
+  vacio;
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private shoppingCart: ShoppingCartService
+    private shoppingCart: ShoppingCartService,
+    private categoriesService: CategoriesService
   ) {}
 
   async ngOnInit() {
     this.cart$ = await this.shoppingCart.getCart();
     this.populateProducts();
     this.calculateRows(window.innerWidth);
+    this.categories$ = this.categoriesService.getAll();
+      this.flag=false;
+      this.vacio=false;
   }
 
-  private populateProducts() {
+  public populateProducts() {
+    this.vacio=false;
     this.productService
       .getAll()
       .pipe(
@@ -56,7 +63,25 @@ export class ProductsComponent implements OnInit {
         })
       : this.products;
   }
-
+   redirecta(id){
+    this.flag=true;
+    setTimeout(() => {
+       this.productService.getProductsByCategory(id).subscribe((result)=> {
+        this.filteredProducts=result;
+        
+        if(this.filteredProducts.length>0){
+          this.vacio=false;
+        }else{
+          this.vacio=true;
+        }
+      } 
+    );
+    this.flag=false;
+    console.log(this.vacio);
+  }, 1000);
+ 
+  
+  }
   @HostListener('window:resize', ['$event.target.innerWidth'])
   private CardsPerRow(width) {
     this.calculateRows(width);

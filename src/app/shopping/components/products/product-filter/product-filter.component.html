@@ -2,21 +2,31 @@
 <br><br>
 <br><div class="sticky-top">
   <div class="list-group">
+   
     <a
       class="list-group-item list-group-item-action"
       [class.active]="!currentCategory"
       routerLink="/"
     >
-       Categorias
+       Categorias    <i *ngIf="this.flag" class="fa fa-spinner fa-spin"></i>
     </a>
+ 
     <a
       *ngFor="let category of categories$ | async"
       class="list-group-item list-group-item-action"
       [class.active]="currentCategory === category.id"
       routerLink="/"
       [queryParams]="{ category: category.id }"
+      
     >
       {{ category.name }}
     </a>
+    <!--button *ngFor="let category of categories$ | async"
+    class="list-group-item list-group-item-action"
+
+    (click)="redirecta(category.id)">
+      {{ category.name }}  
+    </button-->
+   
   </div>
 </div>

@@ -9,6 +9,7 @@ import { ZonasService } from 'shared/services/zonas.service';
 import { Zonas } from 'shared/models/zonas';
 import { first } from 'rxjs/operators';
 import { CategoriesService } from 'shared/services/categories.service';
+import { AppUser } from 'shared/models/app-user';
 
 @Component({
   selector: 'app-shipping-form',
@@ -19,14 +20,18 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
   @Input() cart: ShoppingCart;
   shipping: any = {};
   userId: string;
+  flagUser=false;
   userSub: Subscription;
   zonas$;
+  usersCliente$;
   zonaFinal: Zonas = {
     name: '',
     price:0,
     id:'' 
   };
+  ;
   pago:any={};
+userLogeado:AppUser;
   constructor(
     private authService: AuthService,
     private orderService: OrderService,
@@ -37,12 +42,38 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.zonas$ = this.zonasServices.getAll();
+    this.usersCliente$= this.authService.getAllClientes()/*.subscribe(
+      (users) => {
+        console.log(users);
+        this.usersCliente$=users;
+        console.log(this.usersCliente$);
+      }
+    );*/
     this.userSub = this.authService.user$.subscribe(
-      (user) => (this.userId = user.uid)
+      (user) => {
+
+
+    this.authService.getUser(user.uid).subscribe(
+      (user) => {
+        if(user.isAdmin || user.isEmployee){
+          this.flagUser=true;
+            this.userId=null;
+        }else{
+          this.flagUser=false;
+          this.userId = user.uid
+        }
+      }
     );
+
+        
+      }
+    );
+
+    console.log(this.usersCliente$);
   }
 
   async placeOrder() {
+    console.log(this.userId);
    // console.log(JSON.stringify(this.shipping));
    
    /*  await this.zonasServices.get(this.shipping.city).subscribe((p) => {

@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 export class UserService {
   constructor(private db: AngularFirestore) {}
 
-  save(user: firebase.User) {
+ save(user: firebase.User) {
     return this.db
       .collection('users')
       .doc(user.uid)

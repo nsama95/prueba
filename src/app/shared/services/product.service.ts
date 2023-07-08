@@ -41,4 +41,10 @@ export class ProductService {
   delete(id) {
     return this.db.collection('products').doc(id).delete();
   }
+  getProductsByCategory(category: string): Observable<Product[]> {
+    return this.db.collection<Product>('products', (ref) =>
+      ref.where('category', '==', category)
+    ).valueChanges();
+  }
+  
 }

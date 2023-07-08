@@ -4,16 +4,56 @@
 <br>
 <br>
 <div class="row">
+  <br>
   <div class="col-3">
-    <app-product-filter
-      [currentCategory]="currentCategory"
-    ></app-product-filter>
+    <div class="sticky-top">
+      <div class="list-group">
+       
+        <a
+          class="list-group-item list-group-item-action"
+          [class.active]="!currentCategory"
+          routerLink="/products"
+          (click)="populateProducts()"
+        >
+           Categorias    <i *ngIf="this.flag" class="fa fa-spinner fa-spin"></i>
+        </a>
+     
+        <!--a
+          *ngFor="let category of categories$ | async"
+          class="list-group-item list-group-item-action"
+          [class.active]="currentCategory === category.id"
+          routerLink="/"
+          [queryParams]="{ category: category.id }"
+          
+        >
+          {{ category.name }}
+        </a-->
+        <button *ngFor="let category of categories$ | async"
+        class="list-group-item list-group-item-action"
+    
+        (click)="redirecta(category.id)">
+          {{ category.name }}  
+        </button>
+       
+      </div>
+    </div>
+
   </div>
-    <div class="row" *ngIf="cart$ | async as cart">
+  <br>
+    <div class="row " *ngIf="cart$ | async as cart">
+
+        <div class="col no-results" *ngIf="vacio">
+          <br>
+          <br>
+            <h1>NO TENEMOS RESULTADOS PARA TU BÚSQUEDA.</h1>
+            <h2>POR FAVOR, INTENTÁ CON OTRA CATEGORIA.</h2>
+    
+        </div>
 
       <ng-container *ngFor="let product of filteredProducts; let i = index">
         <br>
         <br>
+        
         <div class="col">
           <app-product-card
             [product]="product"
@@ -23,6 +63,9 @@
         </div>
         <div *ngIf="(i + 1) % cardsPerRow === 0" class="w-100"></div>
       </ng-container>
+      
+      
     </div>
+    
 
 </div>
