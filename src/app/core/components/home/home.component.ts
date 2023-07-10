@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   abrirFoto(id) {
     this.router.navigate(['/productDetalle', id]);
   }
