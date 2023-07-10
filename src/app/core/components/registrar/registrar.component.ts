@@ -28,7 +28,6 @@ export class RegistrarComponent implements OnInit {
     this.authService.register(this.formReg.value)
       .then(response=> {
         if(response){
-        console.log('se registro');
         this.toast.success('Te registraste correctamente. Podes iniciar sesion.');
         this.router.navigate(['/login']);
         }else{

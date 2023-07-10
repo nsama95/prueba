@@ -21,6 +21,8 @@ import { CategorieFormComponent } from './components/categorie-form/categorie-fo
 import { AdminZonasComponent } from './components/admin-zonas/admin-zonas.component';
 import { ZonasFormComponent } from './components/zonas-form/zonas-form.component';
 import { EmployeeAuthGuardService } from './services/employee-auth-guard.service';
+import { AdminReposicionComponent } from './components/admin-reposicion/admin-reposicion.component';
+import { AdminAddProductsComponent } from './components/admin-add-products/admin-add-products.component';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { EmployeeAuthGuardService } from './services/employee-auth-guard.service
     CategorieFormComponent,
     AdminZonasComponent,
     ZonasFormComponent,
+    AdminReposicionComponent,
+    AdminAddProductsComponent,
 
   ],
   imports: [
@@ -70,6 +74,11 @@ import { EmployeeAuthGuardService } from './services/employee-auth-guard.service
           {
             path: 'products',
             component: AdminProductsComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
+          {
+            path: 'reposicion',
+            component: AdminReposicionComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
@@ -115,6 +124,16 @@ import { EmployeeAuthGuardService } from './services/employee-auth-guard.service
           {
             path: 'zonas/:id',
             component: ZonasFormComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
+          {
+            path: 'addProducts/new',
+            component: ProductFormComponent,
+            canActivate: [AuthguardService, AdminAuthGuardService],
+          },
+          {
+            path: 'addProducts',
+            component: AdminAddProductsComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
         ],

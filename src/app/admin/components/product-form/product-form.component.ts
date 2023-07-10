@@ -24,7 +24,12 @@ export class ProductFormComponent implements OnInit {
     title: '',
     price: null,
     category: '',
+    description:'',
+    max:null,
+    min:null,
+    stock:0,
     imageUrl: '',
+    reposicion:null,
   };
   imagen;
 idprueba:String;

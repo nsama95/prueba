@@ -1,0 +1,97 @@
+<br><br><br><br><br><br>
+  
+  <button class="btn btn-primary" (click)="calcularRepo()">Calcular reposicion</button> 
+  <br>
+  <br>
+  <br>
+  <table class="table table-striped" #query>
+    <thead>
+      <tr>
+        <th
+          SortableTable
+          scope="col"
+        >
+    Nombre
+        </th>
+        <th
+          SortableTable
+          scope="col"
+        >
+    Maximo
+        </th>
+        <th
+          SortableTable
+          scope="col"
+        >
+    Minimo
+        </th>
+        <th
+        SortableTable
+        scope="col"
+      >
+  Stock actual
+      </th>
+        <th *ngIf="flagRepo"
+          SortableTable
+          scope="col"
+          >
+    Reponer:
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let p of products 
+        "
+      >
+        <td>{{ p.title }}</td>
+        <td><input
+            #max="ngModel"
+            [(ngModel)]="p.max"
+            name="max"
+            id="max"
+            type="number"
+            
+            required
+          /></td>
+        
+      
+        <td><input
+            #min="ngModel"
+            [(ngModel)]="p.min"
+            name="min"
+            id="min"
+            type="number"
+            
+            required
+          /></td>
+          <td>{{ p.stock }}</td>
+          <td *ngIf="flagRepo">{{ p.reposicion }} unidades</td>
+        <td>
+          <button class="btn btn-primary" (click)="editar(p.max,p.min,p)">Editar</button>        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!--div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="productTableService.tableSize"
+      [(page)]="productTableService.tablePage"
+      [pageSize]="productTableService.tablePageSize"
+    >
+    </ngb-pagination>
+  
+    <select
+      class="custom-select"
+      style="width: auto;"
+      [(ngModel)]="productTableService.tablePageSize"
+    >
+      <option [ngValue]="1">1 items per page</option>
+      <option [ngValue]="5">5 items per page</option>
+      <option [ngValue]="10">10 items per page</option>
+      <option [ngValue]="15">15 items per page</option>
+      <option [ngValue]="20">20 items per page</option>
+    </select>
+  </div-->
+  

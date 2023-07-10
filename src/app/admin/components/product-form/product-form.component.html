@@ -69,6 +69,56 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="description">Descripcion </label>
+        <input
+          #description="ngModel"
+          [(ngModel)]="product.description"
+          name="description"
+          id="description"
+          type="description"
+          class="form-control"
+          maxlength="100"
+          required
+        />
+        <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+          Ingreser Descripcion.
+        </div>
+      </div>
+      <label >Establece los maximos y minimos de este producto: </label>
+      <div class="form-group">
+        <label for="max">Maximo </label>
+        <input
+          #max="ngModel"
+          [(ngModel)]="product.max"
+          name="max"
+          id="max"
+          type="max"
+          class="form-control"
+          [min]="0"
+          required
+        />
+        <div class="alert alert-danger" *ngIf="max.touched && max.invalid">
+          Ingreser el maximo de stock.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="min">Minimo </label>
+        <input
+          #min="ngModel"
+          [(ngModel)]="product.min"
+          name="min"
+          id="min"
+          type="min"
+          class="form-control"
+          maxlength="100"
+          [min]="0"
+          required
+        />
+        <div class="alert alert-danger" *ngIf="min.touched && min.invalid">
+          Ingreser el minimo de stock.
+        </div>
+      </div>
+      <div class="form-group">
         <label for="imageUrl"></label>
         <input
         #imageUrl
