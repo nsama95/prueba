@@ -1,0 +1,20 @@
+.card {
+  margin-bottom: 30px;
+}
+.card-footer {
+  padding: 0px;
+}
+
+.card {
+  height: 55%;
+  max-width: 350px;
+}
+
+.card-body {
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+}
+
+.card-body::-webkit-scrollbar {
+  display: none;
+}

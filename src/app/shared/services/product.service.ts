@@ -28,6 +28,7 @@ export class ProductService {
   }
 
   get(productId): Observable<Product> {
+
     return this.db
       .collection('products')
       .doc(productId)
@@ -46,5 +47,5 @@ export class ProductService {
       ref.where('category', '==', category)
     ).valueChanges();
   }
-  
+
 }

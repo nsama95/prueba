@@ -18,7 +18,7 @@
           >{{ u.name }}</option
         >
       </select>
-   
+
     </div>
 
 
@@ -55,19 +55,19 @@
           [value]="zonas.id"
           >{{ zonas.name }} -${{zonas.price }}</option
         >
-        
+
       </select>
-     
+
       <div
         class="alert alert-danger"
         *ngIf="city.touched && city.invalid"
       >
         Ingrese la ciudad de envio.
       </div>
-     
+
     </div>
     <app-shopping-cart-summary [envio]="shipping.city"></app-shopping-cart-summary>
-   
+
 
 
 
@@ -76,50 +76,57 @@
     <div class="form-group">
       <label for="">Nombre como en la tarjeta</label>
       <input #name="ngModel" name="name" [(ngModel)]="pago.name" type="text" class="form-control"
-        placeholder="Nombre" required />
-      <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-        <div *ngIf="name.errors.required">Ingrese nombre.</div>
+        placeholder="Nombre" required [class.ng-invalid]="name?.invalid && name?.touched" />
+      <div class="alert alert-danger" *ngIf="name?.touched && name?.invalid">
+        <div *ngIf="name?.errors?.required">Ingrese nombre.</div>
       </div>
     </div>
     <div class="form-group">
       <label for="">Numero tarjeta</label>
-      <input #numTarjeta="ngModel" name="numTarjeta" [(ngModel)]="pago.numTarjeta" type="number"
-        class="form-control" placeholder="Numero de tarjeta" required />
-      <div class="alert alert-danger" *ngIf="numTarjeta.touched && numTarjeta.invalid">
-        <div *ngIf="numTarjeta.errors.required">
-          El numero de la tarjeta es requerido.
+      <input #numTarjeta="ngModel" name="numTarjeta" [(ngModel)]="pago.numTarjeta" type="text"
+        class="form-control" placeholder="Numero de tarjeta" required
+        pattern="^[0-9]{16}$"
+        [class.ng-invalid]="numTarjeta?.invalid && numTarjeta?.touched" />
+      <div class="alert alert-danger" *ngIf="numTarjeta?.touched && numTarjeta?.invalid">
+        <div *ngIf="numTarjeta?.errors?.required">
+          El número de tarjeta es requerido.
+        </div>
+        <div *ngIf="numTarjeta?.errors?.pattern">
+          El número de tarjeta debe tener 16 dígitos.
         </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="">Codigo seguridad</label>
-      <input #pin="ngModel" name="pin" [(ngModel)]="pago.pin" type="number" class="form-control"
-        placeholder="Pin" required />
-      <div class="alert alert-danger" *ngIf="pin.touched && pin.invalid">
-        <div *ngIf="pin.errors.required">Ingrese pin.</div>
+      <input #pin="ngModel" name="pin" [(ngModel)]="pago.pin" type="text" class="form-control"
+        placeholder="Pin" required pattern="^[0-9]{3}$"
+        [class.ng-invalid]="pin?.invalid && pin?.touched" />
+      <div class="alert alert-danger" *ngIf="pin?.touched && pin?.invalid">
+        <div *ngIf="pin?.errors?.required">Ingrese pin.</div>
+        <div *ngIf="pin?.errors?.pattern">El código de seguridad debe tener 3 dígitos.</div>
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="">Fecha vencimiento</label>
-     
-      <input #mes="ngModel" name="mes" [(ngModel)]="pago.mes" type="number" class="form-control"
-        placeholder="Mes" required />
-       <br>
-        <input #anio="ngModel" name="anio" [(ngModel)]="pago.anio" type="text" class="form-control"
-        placeholder="Año" required />
-      <div class="alert alert-danger" *ngIf="anio.touched && anio.invalid">
-        <div *ngIf="anio.errors.required">ingrese fecha.</div>
+
+      <div class="form-group">
+        <label for="expirationDate">Fecha de vencimiento (MM/YYYY)</label>
+        <div class="input-group">
+          <input id="expirationDate" name="expirationDate" [(ngModel)]="pago.expirationDate" type="text" class="form-control"
+            placeholder="MM/YYYY" pattern="(0[1-9]|1[0-2])\/(20[2-9][3-9]|2[1-9][3-9]\d)" required [class.ng-invalid]="pin?.invalid && pin?.touched"  />
+        </div>
+        <div class="alert alert-danger" *ngIf="pin?.touched && pin?.invalid">
+          <div *ngIf="pin?.errors?.required">Ingrese una fecha de vencimiento.</div>
+          <div *ngIf="pin?.errors?.required">Ingrese una fecha válida en el formato MM/YYYY y que no sea menor a 2023.</div>
+        </div>
       </div>
-    </div>
 
     <div class="form-group">
       <label for="">DNI</label>
       <input #dni="ngModel" name="dni" [(ngModel)]="pago.dni" type="text" class="form-control"
-        placeholder="DNI" required />
-      <div class="alert alert-danger" *ngIf="dni.touched && dni.invalid">
-        <div *ngIf="dni.errors.required">Ingrese DNI.</div>
+        placeholder="DNI" required [class.ng-invalid]="dni?.invalid && dni?.touched" />
+      <div class="alert alert-danger" *ngIf="dni?.touched && dni?.invalid">
+        <div *ngIf="dni?.errors?.required">Ingrese DNI.</div>
       </div>
     </div>
     <button (click)="placeOrder()" class="btn btn-primary">

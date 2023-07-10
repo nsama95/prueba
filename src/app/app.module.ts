@@ -12,7 +12,7 @@ import { COREModule } from 'core/core.module';
 import { CustomFormsModule } from 'ngx-custom-validators';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from 'shared/shared.module';
-
+import { FormControl, Validators } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './core/components/login/login.component';
@@ -22,6 +22,7 @@ import { OrderAuthguardService } from './shopping/services/order-authguard.servi
 import { ShoppingModule } from './shopping/shopping.module';
 import { HomeComponent } from 'core/components/home/home.component';
 import { RegistrarComponent } from 'core/components/registrar/registrar.component';
+import { ProductDetalleComponent } from './shopping/components/product-detalle/product-detalle.component';
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
   imports: [
@@ -42,6 +43,7 @@ import { RegistrarComponent } from 'core/components/registrar/registrar.componen
       { path: 'products', component: ProductsComponent },
       { path: 'login', component: LoginComponent },
       { path: 'registro', component: RegistrarComponent },
+      { path: 'productDetalle/:id', component: ProductDetalleComponent },
       { path: '**', component: NotFoundComponent },
     ]),
   ],

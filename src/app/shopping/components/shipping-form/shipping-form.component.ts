@@ -27,10 +27,12 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
   zonaFinal: Zonas = {
     name: '',
     price:0,
-    id:'' 
+    id:''
   };
   ;
   pago:any={};
+
+
 userLogeado:AppUser;
   constructor(
     private authService: AuthService,
@@ -65,7 +67,7 @@ userLogeado:AppUser;
       }
     );
 
-        
+
       }
     );
 
@@ -75,7 +77,7 @@ userLogeado:AppUser;
   async placeOrder() {
     console.log(this.userId);
    // console.log(JSON.stringify(this.shipping));
-   
+
    /*  await this.zonasServices.get(this.shipping.city).subscribe((p) => {
    // console.log('result',p);
       this.zonaFinal.price=p.price;
@@ -87,11 +89,11 @@ userLogeado:AppUser;
         (error) => reject(error)
       );
     });
-      
+
     this.shipping.price=p.price;
     this.shipping.city=p.name;
     console.log('cart form'+JSON.stringify(this.shipping));
-    
+
     let pago= this.categorieServices.createPago(this.pago);
     if(pago){let order = new Order(this.userId, this.shipping,this.cart);
     let result = await this.orderService.placeOrder({ ...order });

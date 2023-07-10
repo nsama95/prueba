@@ -16,6 +16,7 @@ import { ShippingFormComponent } from './components/shipping-form/shipping-form.
 import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
 import { ShoppingcartComponent } from './components/shoppingcart/shoppingcart.component';
 import { OrderAuthguardService } from './services/order-authguard.service';
+import { ProductDetalleComponent } from './components/product-detalle/product-detalle.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { OrderAuthguardService } from './services/order-authguard.service';
     OrderComponent,
     OrderSummaryComponent,
     ProductFilterComponent,
+    ProductDetalleComponent,
   ],
   imports: [
     CommonModule,
