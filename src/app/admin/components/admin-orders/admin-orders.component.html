@@ -20,7 +20,7 @@
   <table class="table" *ngIf="tableService.pageData$">
     <thead>
       <tr>
-        <th>Orden</th>
+
         <th>Fecha</th>
         <th>ID</th>
         <th>Detalles</th>
@@ -30,7 +30,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let order of tableService.pageData$ | async">
-        <td>{{ order.shipping.name }}</td>
+    
         <td>{{ order.datePlaced | date: "short" }}</td>
         <td>
           {{ order.id }}

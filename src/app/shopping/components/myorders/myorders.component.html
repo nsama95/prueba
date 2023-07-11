@@ -2,14 +2,16 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Cliente</th>
+      <th>N° de orden</th>
+      <th>Estado</th>
       <th>Fecha</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let order of orders$ | async">
-      <td>{{ order.shipping.name }}</td>
+      <td>{{ order.id }}</td>
+      <td>{{ order.state }}</td>
       <td>{{ order.datePlaced | date }}</td>
       <td>
         <a routerLink="/orders/{{ order.id }}">Vista</a>

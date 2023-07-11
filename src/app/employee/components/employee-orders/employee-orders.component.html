@@ -20,7 +20,7 @@
   <table class="table" *ngIf="tableService.pageData$">
     <thead>
       <tr>
-        <th>Orden</th>
+
         <th>Fecha</th>
         <th>ID</th>
         <th>Detalles</th>
@@ -30,7 +30,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let order of tableService.pageData$ | async">
-        <td>{{ order.shipping.name }}</td>
+    
         <td>{{ order.datePlaced | date: "short" }}</td>
         <td>
           {{ order.id }}
@@ -67,10 +67,10 @@
     style="width: auto;"
     [(ngModel)]="tableService.tablePageSize"
   >
-    <option [ngValue]="1">1 items por page</option>
-    <option [ngValue]="5">5 items per page</option>
-    <option [ngValue]="10">10 items per page</option>
-    <option [ngValue]="15">15 items per page</option>
-    <option [ngValue]="20">20 items per page</option>
+    <option [ngValue]="1">1 </option>
+    <option [ngValue]="5">5 </option>
+    <option [ngValue]="10">10 </option>
+    <option [ngValue]="15">15 </option>
+    <option [ngValue]="20">20 </option>
   </select>
 </div>

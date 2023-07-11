@@ -22,7 +22,7 @@ export class AdminEmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.employeeSubscription = this.employeeService.getAll().subscribe((p) => {
       this.employee = p;
-      console.log(JSON.stringify( this.employee));
+      console.log(this.employee);
      //this.filter(this.query.nativeElement.value);
     });
     

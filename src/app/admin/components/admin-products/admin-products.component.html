@@ -24,6 +24,14 @@
    Nombre
       </th>
       <th
+      SortableTable
+      scope="col"
+      name="title"
+      (sort)="productTableService.onSort($event)"
+    >
+ Stock actual
+    </th>
+      <th
         SortableTable
         sortable="price"
         name="price"
@@ -42,6 +50,7 @@
       "
     >
       <td>{{ p.title }}</td>
+      <td>{{ p.stock }}</td>
       <td>{{ p.price | currency: "USD":"symbol" }}</td>
       <td>
         <a [routerLink]="['/admin/products/', p.id]">Editar</a>
