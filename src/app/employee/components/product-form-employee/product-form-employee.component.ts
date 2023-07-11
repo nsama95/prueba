@@ -79,7 +79,7 @@ idprueba:String;
           this.toast.error('Hubo un error');
         });
     }
-    this.router.navigate(['/admin/products']);
+    this.router.navigate(['/employee/products']);
   }
 
   delete() {
@@ -95,7 +95,7 @@ idprueba:String;
 
       /* upon saving, the user will NOT wait for the promise to resolve. 
         The user will be redirected to AdminProducts and will receive a toast notification */
-      this.router.navigate(['/admin/products']);
+      this.router.navigate(['/employee/products']);
     }
   }
   uploadImage($event: any) {

@@ -64,7 +64,7 @@ zonas: Zonas = {
     }
 
    
-    this.router.navigate(['/admin/zonas']);
+    this.router.navigate(['/employee/zonas']);
   }
 
   delete() {
@@ -79,7 +79,7 @@ zonas: Zonas = {
         });
 
   
-      this.router.navigate(['/admin/zonas']);
+      this.router.navigate(['/employee/zonas']);
     }
   }
 
