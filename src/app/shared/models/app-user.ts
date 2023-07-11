@@ -5,4 +5,5 @@ export interface AppUser {
   password: string;
   isAdmin?: boolean;
   isEmployee?:boolean;
+  idTarjeta?:string;
 }

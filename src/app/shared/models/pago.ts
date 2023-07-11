@@ -7,4 +7,5 @@ export interface Pago {
   dni:string;
   id?: string;
   idUser:string;
+  expirationDate:Date;
 }

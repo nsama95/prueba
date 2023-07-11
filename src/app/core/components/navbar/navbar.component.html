@@ -64,7 +64,7 @@
             class="dropdown-menu"
             aria-labelledby="dropdown01"
           >
-            <a class="dropdown-item" routerLink="/orders">Mis Orderes</a>
+            <a class="dropdown-item" routerLink="/orders" *ngIf="!appUser.isAdmin && !appUser.isEmployee ">Mis Orderes</a>
             <ng-container *ngIf="appUser.isAdmin">
               <a class="dropdown-item" routerLink="/admin/orders"
                 >Orderes</a

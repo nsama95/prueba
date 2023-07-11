@@ -17,7 +17,7 @@ import { ProductService } from 'shared/services/product.service';
   templateUrl: './shipping-form.component.html',
   styleUrls: ['./shipping-form.component.css'],
 })
-export class ShippingFormComponent implements OnInit {
+export class ShippingFormComponent implements OnInit,OnDestroy {
   @Input() cart: ShoppingCart;
   shipping: any = {};
   userId: string;
@@ -32,7 +32,7 @@ export class ShippingFormComponent implements OnInit {
   };
   @Output() precioZona: EventEmitter<number> = new EventEmitter<number>();
   pago:any={};
-
+  tarjetaValida = false;
 
 userLogeado:AppUser;
   constructor(
@@ -43,6 +43,7 @@ userLogeado:AppUser;
     public categorieServices: CategoriesService,
    private productService: ProductService,
   ) {}
+
 
   ngOnInit(): void {
     this.zonas$ = this.zonasServices.getAll();
@@ -101,6 +102,7 @@ userLogeado:AppUser;
     console.log('cart form'+JSON.stringify(this.shipping));
     console.log('cart formprod',this.cart);
     let pago= this.categorieServices.createPago(this.pago);
+    console.log(pago); 
     if(pago){let order = new Order(this.userId, this.shipping,this.cart);
     let result = await this.orderService.placeOrder({ ...order });
       if(result){
@@ -110,12 +112,48 @@ userLogeado:AppUser;
           this.productService.update(product.product,product.product.id);
         }
         }
-   this.router.navigate(['order-success', result.id]);}
+   this.router.navigate(['order-success', result.id]);
+  }
+}
+  /*
+  validateCreditCardNumber(cardNumber: string): boolean {
+    // Eliminar los espacios en blanco y guiones
+    cardNumber = cardNumber.replace(/\s+/g, '');
+    
+    // Validar que el número de tarjeta contenga solo dígitos
+    if (!/^\d+$/.test(cardNumber)) {
+      return false;
+    }
+    
+    let sum = 0;
+    let shouldDouble = false;
+    
+    // Iterar desde el último dígito hacia el primero
+    for (let i = cardNumber.length - 1; i >= 0; i--) {
+      let digit = parseInt(cardNumber.charAt(i), 10);
+      
+      if (shouldDouble) {
+        digit *= 2;
+        if (digit > 9) {
+          digit -= 9;
+        }
+      }
+      
+      sum += digit;
+      shouldDouble = !shouldDouble;
+    }
+    
+    // La tarjeta es válida si la suma total es un múltiplo de 10
+    return (sum % 10) === 0;
+  }
+  
+  validarTarjeta(tarjeta: string) {
+    this.tarjetaValida = this.validateCreditCardNumber(tarjeta);
+  }*/
+  
+ ngOnDestroy(){
+    this.userSub.unsubscribe();
+    this.zonasServices.setPrecioZona(0);
   }
 
-  
-    /*  ngOnDestroy() {
-this.userSub.unsubscribe();
-    this.zonasServices.setPrecioZona(0);
-  }*/
 }

@@ -78,18 +78,34 @@
 
     <div class="form-group">
       <label for="">Nombre como en la tarjeta</label>
-      <input #name="ngModel" name="name" [(ngModel)]="pago.name" type="text" class="form-control"
-        placeholder="Nombre" required [class.ng-invalid]="name?.invalid && name?.touched" />
+      <input
+        #name="ngModel"
+        name="name"
+        [(ngModel)]="pago.name"
+        type="text"
+        class="form-control"
+        placeholder="Nombre"
+        required
+        [ngClass]="{ 'is-invalid': name?.invalid && name?.touched }"
+      />
       <div class="alert alert-danger" *ngIf="name?.touched && name?.invalid">
         <div *ngIf="name?.errors?.required">Ingrese nombre.</div>
       </div>
     </div>
+
     <div class="form-group">
       <label for="">Numero tarjeta</label>
-      <input #numTarjeta="ngModel" name="numTarjeta" [(ngModel)]="pago.numTarjeta" type="text"
-        class="form-control" placeholder="Numero de tarjeta" required
+      <input
+        #numTarjeta="ngModel"
+        name="numTarjeta"
+        [(ngModel)]="pago.numTarjeta"
+        type="text"
+        class="form-control"
+        placeholder="Numero de tarjeta"
+        required
         pattern="^[0-9]{16}$"
-        [class.ng-invalid]="numTarjeta?.invalid && numTarjeta?.touched" />
+        [ngClass]="{ 'is-invalid': numTarjeta?.invalid && numTarjeta?.touched }"
+      />
       <div class="alert alert-danger" *ngIf="numTarjeta?.touched && numTarjeta?.invalid">
         <div *ngIf="numTarjeta?.errors?.required">
           El número de tarjeta es requerido.
@@ -102,41 +118,122 @@
 
     <div class="form-group">
       <label for="">Codigo seguridad</label>
-      <input #pin="ngModel" name="pin" [(ngModel)]="pago.pin" type="text" class="form-control"
-        placeholder="Pin" required pattern="^[0-9]{3}$"
-        [class.ng-invalid]="pin?.invalid && pin?.touched" />
+      <input
+        #pin="ngModel"
+        name="pin"
+        [(ngModel)]="pago.pin"
+        type="text"
+        class="form-control"
+        placeholder="Pin"
+        required
+        pattern="^[0-9]{3}$"
+        [ngClass]="{ 'is-invalid': pin?.invalid && pin?.touched }"
+      />
       <div class="alert alert-danger" *ngIf="pin?.touched && pin?.invalid">
         <div *ngIf="pin?.errors?.required">Ingrese pin.</div>
-        <div *ngIf="pin?.errors?.pattern">El código de seguridad debe tener 3 dígitos.</div>
+        <div *ngIf="pin?.errors?.pattern">
+          El código de seguridad debe tener 3 dígitos.
+        </div>
       </div>
     </div>
 
-
-      <div class="form-group">
-        <label for="expirationDate">Fecha de vencimiento (MM/YYYY)</label>
-        <div class="input-group">
-          <input id="expirationDate" name="expirationDate" [(ngModel)]="pago.expirationDate" type="text" class="form-control"
-            placeholder="MM/YYYY" pattern="(0[1-9]|1[0-2])\/(20[2-9][3-9]|2[1-9][3-9]\d)" required [class.ng-invalid]="pin?.invalid && pin?.touched"  />
-        </div>
-        <div class="alert alert-danger" *ngIf="pin?.touched && pin?.invalid">
-          <div *ngIf="pin?.errors?.required">Ingrese una fecha de vencimiento.</div>
-          <div *ngIf="pin?.errors?.required">Ingrese una fecha válida en el formato MM/YYYY y que no sea menor a 2023.</div>
-        </div>
-      </div>
 
     <div class="form-group">
-      <label for="">DNI</label>
-      <input #dni="ngModel" name="dni" [(ngModel)]="pago.dni" type="text" class="form-control"
-        placeholder="DNI" required [class.ng-invalid]="dni?.invalid && dni?.touched" />
-      <div class="alert alert-danger" *ngIf="dni?.touched && dni?.invalid">
-        <div *ngIf="dni?.errors?.required">Ingrese DNI.</div>
+      <label for="expirationDate">Fecha de vencimiento (MM/YYYY)</label>
+      <div class="input-group">
+        <input
+        #expirationDate="ngModel"
+          id="expirationDate"
+          name="expirationDate"
+          [(ngModel)]="pago.expirationDate"
+          type="text"
+          class="form-control"
+          placeholder="MM/YYYY"
+          pattern="(0[1-9]|1[0-2])\/(20[2-9][3-9]|2[1-9][3-9]\d)"
+          required
+          [ngClass]="{ 'is-invalid': expirationDate?.invalid && expirationDate?.touched }"
+        />
+      </div>
+      <div class="alert alert-danger" *ngIf="expirationDate?.touched && expirationDate?.invalid">
+        <div *ngIf="expirationDate?.errors?.required">Ingrese una fecha de vencimiento.</div>
+        <div *ngIf="expirationDate?.errors?.pattern">
+          Ingrese una fecha válida en el formato MM/YYYY y que no sea menor a 2023.
+        </div>
       </div>
     </div>
+
+      <div class="form-group">
+        <label for="">DNI</label>
+        <input
+          #dni="ngModel"
+          name="dni"
+          [(ngModel)]="pago.dni"
+          type="text"
+          class="form-control"
+          placeholder="DNI"
+          required
+          [ngClass]="{ 'is-invalid': dni?.invalid && dni?.touched }"
+        />
+        <div class="alert alert-danger" *ngIf="dni?.touched && dni?.invalid">
+          <div *ngIf="dni?.errors?.required">Ingrese DNI.</div>
+        </div>
+      </div>
     <button (click)="placeOrder()" class="btn btn-primary">
       Confirmar compra
     </button>
   </form>
 </div>
+<script>
+  function validateForm(event) {
+    event.preventDefault();
+
+    const cardNumberInput = document.getElementById('cardNumber');
+    const cardHolderInput = document.getElementById('cardHolder');
+    const expirationDateInput = document.getElementById('expirationDate');
+    const cvvInput = document.getElementById('cvv');
+
+    const cardNumberError = document.getElementById('cardNumberError');
+    const cardHolderError = document.getElementById('cardHolderError');
+    const expirationDateError = document.getElementById('expirationDateError');
+    const cvvError = document.getElementById('cvvError');
+
+    const cardNumberRegex = /^[0-9]{16}$/;
+    const expirationDateRegex = /^(0[1-9]|1[0-2])\/[0-9]{2}$/;
+    const cvvRegex = /^[0-9]{3}$/;
+
+    cardNumberError.textContent = '';
+    cardHolderError.textContent = '';
+    expirationDateError.textContent = '';
+    cvvError.textContent = '';
+
+    if (!cardNumberRegex.test(cardNumberInput.value)) {
+      cardNumberError.textContent = 'Ingrese un número de tarjeta válido';
+    }
+
+    if (cardHolderInput.value.trim() === '') {
+      cardHolderError.textContent = 'Ingrese el titular de la tarjeta';
+    }
+
+    if (!expirationDateRegex.test(expirationDateInput.value)) {
+      expirationDateError.textContent = 'Ingrese una fecha de vencimiento válida (MM/YY)';
+    }
+
+    if (!cvvRegex.test(cvvInput.value)) {
+      cvvError.textContent = 'Ingrese un código CVV válido (3 dígitos)';
+    }
+
+    if (
+      cardNumberError.textContent === '' &&
+      cardHolderError.textContent === '' &&
+      expirationDateError.textContent === '' &&
+      cvvError.textContent === ''
+    ) {
+      // Formulario válido, puedes realizar acciones adicionales aquí
+      console.log('Formulario válido');
+      document.getElementById('creditCardForm').reset();
+    }
+  }
+</script>
 
 
 
