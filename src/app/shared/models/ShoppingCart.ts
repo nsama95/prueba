@@ -42,7 +42,7 @@ export class ShoppingCart {
  /*get totalEnvio(){
 
  }*/
-  getQuantity(product: Product) {
+  public getQuantity(product: Product) {
     let item = this.itemsMap[product.id];
   
   

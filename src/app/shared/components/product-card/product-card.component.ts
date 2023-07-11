@@ -12,6 +12,7 @@ export class ProductCardComponent {
   @Input() product: Product;
   @Input() showActions;
   @Input() shoppingCart: ShoppingCart;
+  flagDescription=false;
 
   constructor(private shoppingCartService: ShoppingCartService) {}
 
@@ -19,5 +20,8 @@ export class ProductCardComponent {
 
   addToCart() {
     this.shoppingCartService.addToCart(this.product);
+  }
+  showDescription(){
+    if(this.flagDescription){this.flagDescription=false;}else{this.flagDescription=true;}
   }
 }

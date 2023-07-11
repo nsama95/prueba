@@ -10,6 +10,11 @@
   <div class="card-body">
     <h5 class="card-title">{{ product.title }}</h5>
     <p class="card-text">{{ product.price | currency: "USD":"symbol" }}</p>
+    <button class="btnInfo btnColorInfo">
+      <i class="fa fa-info-circle" aria-hidden="true" (click)="showDescription()">Info</i>
+    </button>
+   
+    <h5 *ngIf="flagDescription" class="card-title">{{ product.description }}</h5>
   </div>
   <div
     class="card-footer"
@@ -17,7 +22,7 @@
     style="padding: 5px;"
   >
     <button
-      *ngIf="!shoppingCart.getQuantity(product); else updateQuantity"
+      *ngIf="!shoppingCart.getQuantity(product)|| shoppingCart.getQuantity(product)==0; else updateQuantity"
       (click)="addToCart()"
       class="btn btn-secondary btn-block"
     >

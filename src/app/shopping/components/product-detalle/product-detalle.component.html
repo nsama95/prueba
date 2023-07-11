@@ -1,32 +1,13 @@
-<!--br>
-<br><br><div class="card mx-auto">
-  <img [src]="product.imageUrl" class="thumbnail"/>
+<br>
+<br><br><br>
+<br><br><br>
+<br><br><div class="mx-auto">
+  <app-product-card
+  [product]="product"
+  [showActions]="true"
+  [shoppingCart]="cart"
+ > </app-product-card>
+</div>
+ 
 
-  <div class="card-body">
-    <h5 class="card-title">{{ product.title }}</h5>
-    <p class="card-text">{{ product.price | currency: "USD":"symbol" }}</p>
 
-  </div>
-  <div
-    class="card-footer"
-    *ngIf="showActions && shoppingCart"
-    style="padding: 5px;"
-  >
-    <button
-      *ngIf="shoppingCart.getQuantity(product) === 0; else updateQuantity"
-      (click)="addToCart()"
-      class="btn btn-secondary btn-block"
-    >
-      COMPRAR
-    </button>
-    <ng-template #updateQuantity>
-      <br>
-      <br>
-      <app-product-quantity
-        [product]="product"
-        [shoppingCart]="shoppingCart"
-      ></app-product-quantity>
-      <br>
-    </ng-template>
-  </div>
-</div-->

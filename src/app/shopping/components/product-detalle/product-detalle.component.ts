@@ -5,6 +5,7 @@ import { Product } from 'shared/models/product';
 import { first } from 'rxjs/operators';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ShoppingCart } from 'shared/models/ShoppingCart';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-detalle',
@@ -13,15 +14,18 @@ import { ShoppingCart } from 'shared/models/ShoppingCart';
 })
 export class ProductDetalleComponent implements OnInit {
   id?: string;
-  products: Product;
-  @Input() product: Product;
-  @Input() showActions;
-  @Input() shoppingCart: ShoppingCart;
 
+  product: Product;
+ shoppingCart: ShoppingCart;
+flagDescription;
+cart:any;
+  cart$: Observable<ShoppingCart>;
+  constructor(private productService: ProductService, 
+    private router: ActivatedRoute,
+     private shoppingCartService: ShoppingCartService
+     ) { }
 
-  constructor(private productService: ProductService, private router: ActivatedRoute, private shoppingCartService: ShoppingCartService) { }
-
-   ngOnInit(): void {
+   async ngOnInit(): Promise<void> {
 
     this.id = this.router.snapshot.paramMap.get('id');
 
@@ -31,11 +35,9 @@ export class ProductDetalleComponent implements OnInit {
         .pipe(first())
         .subscribe((p) => (this.product = p));
     }
+    this.cart$ = await this.shoppingCartService.getCart();
+   
 
-
-  }
-  addToCart() {
-    this.shoppingCartService.addToCart(this.product);
   }
 
 }
