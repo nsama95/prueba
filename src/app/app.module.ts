@@ -23,6 +23,7 @@ import { ShoppingModule } from './shopping/shopping.module';
 import { HomeComponent } from 'core/components/home/home.component';
 import { RegistrarComponent } from 'core/components/registrar/registrar.component';
 import { ProductDetalleComponent } from './shopping/components/product-detalle/product-detalle.component';
+import { EmployeeModule } from './employee/employee.module';
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
   imports: [
@@ -31,6 +32,7 @@ import { ProductDetalleComponent } from './shopping/components/product-detalle/p
     COREModule,
     AdminModule,
     ShoppingModule,
+    EmployeeModule,
     ToastrModule.forRoot(),
     AngularFirestoreModule,
     AngularFireAuthModule,

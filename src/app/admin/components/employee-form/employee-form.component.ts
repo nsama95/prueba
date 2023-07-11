@@ -26,6 +26,11 @@ export class EmployeeFormComponent implements OnInit {
   };
 user:AppUser;
 idUser;
+roles={
+  rol:'',
+  id:'',
+  flag:null
+}
   constructor(private categoriesService: CategoriesService,
     private employeeService: EmployeeService,
     private toast: ToastrService,
@@ -52,11 +57,30 @@ idUser;
         .subscribe((p) => (this.employee = p));
     }
   }
-
+  SetearRol(algo :any){
+    this.categories$.pipe(first()).subscribe(prod=>{
+      const selectedProduct = prod.find(p => p.id === algo);
+      this.roles=selectedProduct;
+      console.log(this.roles)
+      if (this.roles.id=='wgnVlH65kzgH9WWDxhf9') {
+              console.log('entre')
+              this.employee.isAdmin=true;
+              this.employee.isEmployee=false;
+      }else{
+          this.employee.isEmployee=true;
+          this.employee.isAdmin=false;
+      }
+    });
+  }
   save() {
-   
-    if (this.uid) {
-      this.employeeService
+   if(this.employee.isAdmin){
+    this.employee.isAdmin=true;
+   }else{
+    this.employee.isEmployee=true}
+   console.log(this.employee);
+     if (this.uid) {
+      
+     this.employeeService
         .update(this.employee, this.uid,this.idUser)
         .then(() => {
           this.toast.success('Empleado editado correctamente');
@@ -79,7 +103,7 @@ idUser;
     }
 
     setTimeout(() => {
-      this.router.navigate(['/admin/employee']);}, 700);
+      this.router.navigate(['/admin/employeeAdm']);}, 700);
   }
 
   delete() {
@@ -94,7 +118,7 @@ idUser;
         });
 
   
-      this.router.navigate(['/admin/employee']);
+      this.router.navigate(['/admin/employeeAdm']);
     }
   }
 

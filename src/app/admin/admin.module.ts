@@ -22,7 +22,8 @@ import { AdminZonasComponent } from './components/admin-zonas/admin-zonas.compon
 import { ZonasFormComponent } from './components/zonas-form/zonas-form.component';
 import { EmployeeAuthGuardService } from './services/employee-auth-guard.service';
 import { AdminReposicionComponent } from './components/admin-reposicion/admin-reposicion.component';
-import { AdminAddProductsComponent } from './components/admin-add-products/admin-add-products.component';
+import { AdminMercaderiaComponent } from './components/admin-mercaderia/admin-mercaderia.component';
+import { MercaderiaFormComponent } from './components/mercaderia-form/mercaderia-form.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { AdminAddProductsComponent } from './components/admin-add-products/admin
     AdminZonasComponent,
     ZonasFormComponent,
     AdminReposicionComponent,
-    AdminAddProductsComponent,
+    AdminMercaderiaComponent,
+    MercaderiaFormComponent,
 
   ],
   imports: [
@@ -82,17 +84,17 @@ import { AdminAddProductsComponent } from './components/admin-add-products/admin
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
-            path: 'employee',
+            path: 'employeeAdm',
             component: AdminEmployeeComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
                      },
           {
-            path: 'employee/new',
+            path: 'employeeAdm/new',
             component: EmployeeFormComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
-            path: 'employee/:uid',
+            path: 'employeeAdm/:uid',
             component: EmployeeFormComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
@@ -128,110 +130,16 @@ import { AdminAddProductsComponent } from './components/admin-add-products/admin
           },
           {
             path: 'addProducts/new',
-            component: ProductFormComponent,
+            component:  MercaderiaFormComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
           {
             path: 'addProducts',
-            component: AdminAddProductsComponent,
+            component: AdminMercaderiaComponent,
             canActivate: [AuthguardService, AdminAuthGuardService],
           },
         ],
-      }/*,{
-        path: 'employee',
-        children: [
-          {
-            path: 'orders',
-            component: AdminOrdersComponent,
-            canActivate: [AuthguardService, EmployeeAuthGuardService],
-          },
-          {
-            path: 'products/new',
-            component: ProductFormComponent,
-            canActivate: [AuthguardService, EmployeeAuthGuardService],
-          },
-          {
-            path: 'products/:id',
-            component: ProductFormComponent,
-            canActivate: [AuthguardService, EmployeeAuthGuardService],
-          },
-          {
-            path: 'products',
-            component: AdminProductsComponent,
-            canActivate: [AuthguardService, EmployeeAuthGuardService],
-          },
-          {
-            path: 'categories',
-            component: AdminCategoriesComponent,
-            canActivate: [AuthguardService, EmployeeAuthGuardService],
-          },
-          {
-            path: 'categories/new',
-            component: CategorieFormComponent,
-            canActivate: [AuthguardService,EmployeeAuthGuardService],
-          },
-          {
-            path: 'categories/:id',
-            component: CategorieFormComponent,
-            canActivate: [AuthguardService,EmployeeAuthGuardService],
-          },
-          {
-            path: 'zonas',
-            component: AdminZonasComponent,
-            canActivate: [AuthguardService,EmployeeAuthGuardService],
-          },
-          {
-            path: 'zonas/new',
-            component: ZonasFormComponent,
-            canActivate: [AuthguardService,EmployeeAuthGuardService],
-          },
-          {
-            path: 'zonas/:id',
-            component: ZonasFormComponent,
-            canActivate: [AuthguardService,EmployeeAuthGuardService],
-          },
-          {
-            path: 'employee/new',
-            component: EmployeeFormComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService],
-          },
-          {
-            path: 'employee/:id',
-            component: EmployeeFormComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService],
-          },
-          {
-            path: 'categories',
-            component: AdminCategoriesComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService],
-          },
-          {
-            path: 'categories/new',
-            component: CategorieFormComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService],
-          },
-          {
-            path: 'categories/:id',
-            component: CategorieFormComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService],
-          },
-          {
-            path: 'zonas',
-            component: AdminZonasComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService],
-          },
-          {
-            path: 'zonas/new',
-            component: ZonasFormComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService],
-          },
-          {
-            path: 'zonas/:id',
-            component: ZonasFormComponent,
-            canActivate: [AuthguardService, AdminAuthGuardService],
-          },
-        ],
-      }*/
+      }
     ]),
   ],
   providers: [AdminAuthGuardService, ProductTableService],

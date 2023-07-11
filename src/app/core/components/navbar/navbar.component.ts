@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit {
     });
 
     this.cart$ = await this.shoppingCartService.getCart();
+    console.log(this.appUser.isEmployee)
   }
 
   logout() {

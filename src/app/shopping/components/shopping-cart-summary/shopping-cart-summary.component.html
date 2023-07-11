@@ -12,15 +12,24 @@
         </div>
       </li>
       <li class="list-group-item font-weight-bold">
-        Total
+        Total de compra
         <div class="float-right">
           {{ cart.totalPrice | currency: "USD":"symbol" }}
         </div>
 <br>
-        Envio
-        <div class="card-text">
-          {{ envio }}
+        Total de envio
+        <div class="float-right">
+          {{ precioZona }}
         </div>
+    
+      </li>
+      <li class="list-group-item font-weight-bold">
+        Total 
+        <div class="float-right">
+          {{ totalConEnvio}}
+        </div>
+
+    
       </li>
     </ul>
   </div>

@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Beaute-shop';
   constructor(private auth: AuthService, private router: Router) {
-  /* auth.redirect().subscribe((res) => {
+  auth.redirect().subscribe((res) => {
       if (res) {
-       // const returnUrl = localStorage.getItem('returnUrl');
+       const returnUrl = localStorage.getItem('returnUrl');
         router.navigateByUrl(returnUrl);
       }
-    });*/
+    });
   }
 }
  

@@ -1,0 +1,72 @@
+<br><br><br><br><br><br><p>
+  <a routerLink="/employee/products/new" class="btn btn-primary">Agregar producto</a>
+</p>
+
+<!--p>
+  <input
+    #query
+    (keyup)="filter(query.value)"
+    type="text"
+    placeholder="Search..."
+    class="form-control"
+  />
+</p-->
+
+<table class="table table-striped" #query>
+  <thead>
+    <tr>
+      <th
+        SortableTable
+        scope="col"
+        name="title"
+        (sort)="productTableService.onSort($event)"
+      >
+   Nombre
+      </th>
+      <th
+        SortableTable
+        sortable="price"
+        name="price"
+        (sort)="productTableService.onSort($event)"
+      >
+        Precio
+      </th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let p of productTableService.tableProducts$ | async;
+        count as length
+      "
+    >
+      <td>{{ p.title }}</td>
+      <td>{{ p.price | currency: "USD":"symbol" }}</td>
+      <td>
+        <a [routerLink]="['/employee/products/', p.id]">Editar</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination
+    [collectionSize]="productTableService.tableSize"
+    [(page)]="productTableService.tablePage"
+    [pageSize]="productTableService.tablePageSize"
+  >
+  </ngb-pagination>
+
+  <select
+    class="custom-select"
+    style="width: auto;"
+    [(ngModel)]="productTableService.tablePageSize"
+  >
+
+    <option [ngValue]="5">5 </option>
+    <option [ngValue]="10">10 </option>
+    <option [ngValue]="15">15 </option>
+    <option [ngValue]="20">20 </option>
+  </select>
+</div>

@@ -15,6 +15,7 @@ import { map, switchMap, first } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class OrderService {
+
   constructor(
     private db: AngularFirestore,
     private shoppingCartService: ShoppingCartService

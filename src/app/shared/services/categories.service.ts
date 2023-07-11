@@ -39,6 +39,7 @@ export class CategoriesService {
       .valueChanges({ idField: 'id' });
   }
   createPago(product: Pago) {
+    console.log(product);
     return this.db.collection('pago').add(product);
   }
 }

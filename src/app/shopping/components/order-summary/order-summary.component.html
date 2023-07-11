@@ -3,9 +3,10 @@
 <div class="card">
   <div class="card-body" *ngIf="order">
     <h5 class="card-title">Resumen de compra</h5>
-    <p>Orden num: {{ order.id }}</p>
-    <p>Direccion: {{ order.shipping.addressLine1 }}</p>
-    <p>Precio del envio: ${{ order.shipping.price }}</p>
+    <p>N° orden: {{ order.id }}</p>
+    <p class="font-weight-bold">Estado: {{ order.state }}</p>
+    <p *ngIf="order.numEnvio">Numero de envio: {{ order.numEnvio }}</p>
+    <p>Direccion de entrega: {{ order.shipping.addressLine1 }}</p>
     <ul class="list-group list-group-flush">
       <li *ngFor="let item of order.items" class="list-group-item">
         {{ item.quantity }} x {{ item.product.title }}
@@ -14,14 +15,22 @@
         </div>
       </li>
       <li class="list-group-item font-weight-bold">
-        Total
+        Total de productos
         <div class="float-right">
-          {{ totalPrice }} 
+          $ {{ totalPrice }} 
         </div>
-        Envio
+        <br>
+        Total envio
         <div class="float-right">
-          {{ totalPrice }} 
+          $ {{order.shipping.price}} 
         </div>
+      </li>
+      <li class="list-group-item font-weight-bold">
+        Total 
+        <div class="float-right">
+          $ {{ order.totalCart }} 
+        </div>
+       
       </li>
     </ul>
   </div>

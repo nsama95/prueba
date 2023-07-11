@@ -6,4 +6,5 @@ export interface Pago {
   anio:number;
   dni:string;
   id?: string;
+  idUser:string;
 }

@@ -1,0 +1,39 @@
+<br><br><br><br><br>
+<br><br><br><br><br>
+<div class="row"style="padding: 5%;">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save()">
+      <div class="form-group">
+        <label for="title">Nombre</label>
+        <input
+          #title="ngModel"
+          [(ngModel)]="categorie.name"
+          name="title"
+          id="title"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+          Ingreser Nombre.
+        </div>
+      </div>
+      
+      <button
+      type="button"     
+      class="btn btn-danger"
+      routerLink="/admin/categories">
+      Cancelar
+    </button> 
+      <button class="btn btn-primary" [disabled]="f.invalid">Guardar</button>
+      <button
+        type="button"
+        (click)="delete()"
+        *ngIf="id"
+        class="btn"
+      >
+      <i class="fa fa-trash"></i>
+      </button>
+    </form>
+  </div>
+</div>

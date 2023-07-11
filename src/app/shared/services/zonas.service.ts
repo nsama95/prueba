@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Zonas } from 'shared/models/zonas';
 @Injectable({
   providedIn: 'root',
 })
 export class ZonasService {
   // categoriesMap: { id: string; name: string } | {} = {};
+  private precioZonaSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor(private db: AngularFirestore) {}
 
@@ -44,4 +45,11 @@ export class ZonasService {
       .collection('profile', (catRef) => catRef.orderBy('role', 'asc'))
       .valueChanges({ idField: 'id' });
   }*/
+  getPrecioZona(): Observable<number> {
+    return this.precioZonaSubject.asObservable();
+  }
+
+  setPrecioZona(precio: number) {
+    this.precioZonaSubject.next(precio);
+  }
 }

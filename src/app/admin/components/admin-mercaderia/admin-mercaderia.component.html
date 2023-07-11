@@ -1,5 +1,5 @@
-<!--br><br><br><br><br><br><p>
-    <a routerLink="/admin/products/new" class="btn btn-primary">Agregar producto</a>
+<br><br><br><br><br><br><p>
+    <a routerLink="/admin/addProducts/new" class="btn btn-primary">Agregar stock</a>
   </p>
   
   <!--p>
@@ -10,7 +10,7 @@
       placeholder="Search..."
       class="form-control"
     />
-  </p>
+  </p-->
   
   <table class="table table-striped" #query>
     <thead>
@@ -29,7 +29,15 @@
           name="price"
           (sort)="productTableService.onSort($event)"
         >
-          Precio
+          Codigo
+        </th>
+        <th
+          SortableTable
+          sortable="price"
+          name="price"
+          (sort)="productTableService.onSort($event)"
+        >
+          Stock actual
         </th>
         <th scope="col"></th>
       </tr>
@@ -42,10 +50,8 @@
         "
       >
         <td>{{ p.title }}</td>
-        <td>{{ p.price | currency: "USD":"symbol" }}</td>
-        <td>
-          <a [routerLink]="['/admin/products/', p.id]">Editar</a>
-        </td>
+        <td>{{ p.id }}</td>
+        <td>{{ p.stock }}</td>
       </tr>
     </tbody>
   </table>
@@ -69,5 +75,5 @@
       <option [ngValue]="15">15 </option>
       <option [ngValue]="20">20 </option>
     </select>
-  </div-->
+  </div>
   

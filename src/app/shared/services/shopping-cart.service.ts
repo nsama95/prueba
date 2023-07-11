@@ -30,7 +30,7 @@ export class ShoppingCartService {
             .pipe(first())
             .subscribe((d) => {
               console.log('carrito services',d);
-              //cart.dateCreated = d.dateCreated;
+             // cart.dateCreated = d.dateCreated;
             });
           item.forEach((i: { product: Product; quantity: number }) => {
             return Object.assign(cart.items, {
@@ -111,15 +111,17 @@ export class ShoppingCartService {
       .pipe(first())
       .subscribe((item: any) => {
         let quantity = (item?.quantity || 0) + change;
-
-        if (quantity === 0) {
-          item$.delete();
-        } else {
-          item$.set({
-            product: product,
-            quantity: quantity,
-          });
+        if(quantity<=product.stock && quantity>=0){
+          if (quantity === 0) {
+            item$.delete();
+          } else {
+            item$.set({
+              product: product,
+              quantity: quantity,
+            });
+          }
         }
+       
       });
   }
 }

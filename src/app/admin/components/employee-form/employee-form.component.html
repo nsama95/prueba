@@ -51,6 +51,7 @@
           id="category"
           type="text"
           class="form-control"
+          (change)="SetearRol(category.value)"
           required
         >
           <option value=""></option>
@@ -89,7 +90,7 @@
       type="button"     
 
       class="btn btn-danger"
-      routerLink="/admin/employee">
+      routerLink="/admin/employeeAdm">
       Cancelar
     </button>
       <button class="btn btn-primary" [disabled]="f.invalid">Guardar</button>

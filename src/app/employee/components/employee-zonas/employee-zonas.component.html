@@ -1,0 +1,40 @@
+<br><br><br><br><br><br><p>
+    <a routerLink="/employee/zonas/new" class="btn btn-primary">Agregar nueva zona</a>
+  </p>
+  
+
+  
+  <table class="table table-striped" #query>
+    <thead>
+      <tr>
+        <th
+          SortableTable
+          scope="col"
+        >
+    Nombre
+        </th>
+        <th
+          SortableTable
+          scope="col"
+        >
+    Precio
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let p of zonas 
+        "
+      >
+        <td>{{ p.name }}</td>
+        <td>{{ p.price }}</td>
+        <td>
+          <a [routerLink]="['/employee/zonas/', p.id]">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+
+  

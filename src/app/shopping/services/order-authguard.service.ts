@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class OrderAuthguardService implements CanActivate {
   userId: string;
   isAdmin: boolean;
+  isEmployee:boolean;
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -28,12 +29,15 @@ export class OrderAuthguardService implements CanActivate {
     this.auth.appUser$.subscribe((u) => {
       this.isAdmin = u?.isAdmin;
     });
+    this.auth.appUser$.subscribe((u) => {
+      this.isEmployee = u?.isEmployee;
+    });
   }
 
   async canActivate(route: ActivatedRouteSnapshot) {
     let orderId = await this.orderService.getOrderUserId(route);
-
-    if (orderId === this.userId || this.isAdmin) {
+console.log(this.isAdmin);
+    if (orderId === this.userId || this.isAdmin || this.isEmployee ) {
       return true;
     } else {
       this.router.navigate(['/']);

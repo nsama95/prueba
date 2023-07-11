@@ -17,7 +17,7 @@
     style="padding: 5px;"
   >
     <button
-      *ngIf="shoppingCart.getQuantity(product) === 0; else updateQuantity"
+      *ngIf="!shoppingCart.getQuantity(product); else updateQuantity"
       (click)="addToCart()"
       class="btn btn-secondary btn-block"
     >

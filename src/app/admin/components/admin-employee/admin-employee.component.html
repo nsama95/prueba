@@ -1,5 +1,5 @@
 <br><br><br><br><br><br><p>
-    <a routerLink="/admin/employee/new" class="btn btn-primary">Agregar usuario</a>
+    <a routerLink="/admin/employeeAdm/new" class="btn btn-primary">Agregar usuario</a>
   </p>
   
   <!--p>
@@ -38,7 +38,7 @@
         <td>{{ p.email }}</td>
         <td>{{ p.isAdmin}}|{{p.isEmploye}}</td>
         <td>
-          <a [routerLink]="['/admin/employee/', p.uid]">Editar</a>
+          <a [routerLink]="['/admin/employeeAdm/', p.uid]">Editar</a>
         </td>
         <td> 
           <button type="button"

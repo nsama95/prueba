@@ -48,11 +48,13 @@
         type="text"
         class="form-control"
         required
+        (change)="envioPrecio(city.value)"
       >
-        <option value=""></option>
+
         <option
           *ngFor="let zonas of zonas$ | async"
           [value]="zonas.id"
+          
           >{{ zonas.name }} -${{zonas.price }}</option
         >
 
@@ -64,10 +66,11 @@
       >
         Ingrese la ciudad de envio.
       </div>
-
+    
     </div>
-    <app-shopping-cart-summary [envio]="shipping.city"></app-shopping-cart-summary>
-
+    
+   
+ 
 
 
 

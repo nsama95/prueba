@@ -1,0 +1,167 @@
+<br><br><br><br><br>
+<br><br><br><br><br>
+<!--script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+</script-->
+<div class="row" style="padding: 5%;">
+  <div class="col-md-6" >
+    <form #f="ngForm" (ngSubmit)="save()">
+      <div class="form-group">
+        <label for="title">Nombre</label>
+        <input
+          #title="ngModel"
+          [(ngModel)]="product.title"
+          name="title"
+          id="title"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+          Ingreser Nombre.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="price">Precio</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input
+            #price="ngModel"
+            [(ngModel)]="product.price"
+            name="price"
+            id="price"
+            type="number"
+            class="form-control"
+            [min]="0"
+            required
+          />
+        </div>
+        <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+          <div *ngIf="price.errors.required">Ingrese el precio.</div>
+          <div *ngIf="price.errors.min">El precio debe ser mayor a 0</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Categoria</label>
+        <select
+          #category="ngModel"
+          [(ngModel)]="product.category"
+          name="category"
+          id="category"
+          type="text"
+          class="form-control"
+          required
+        >
+          <option value=""></option>
+          <option
+            *ngFor="let category of categories$ | async"
+            [value]="category.id"
+            >{{ category.name }}</option
+          >
+        </select>
+        <div
+          class="alert alert-danger"
+          *ngIf="category.touched && category.invalid"
+        >
+          Ingrese Categoria.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Descripcion </label>
+        <input
+          #description="ngModel"
+          [(ngModel)]="product.description"
+          name="description"
+          id="description"
+          type="description"
+          class="form-control"
+          maxlength="100"
+          required
+        />
+        <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+          Ingreser Descripcion.
+        </div>
+      </div>
+      <label >Establece los maximos y minimos de este producto: </label>
+      <div class="form-group">
+        <label for="max">Maximo </label>
+        <input
+          #max="ngModel"
+          [(ngModel)]="product.max"
+          name="max"
+          id="max"
+          type="max"
+          class="form-control"
+          [min]="0"
+          required
+        />
+        <div class="alert alert-danger" *ngIf="max.touched && max.invalid">
+          Ingreser el maximo de stock.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="min">Minimo </label>
+        <input
+          #min="ngModel"
+          [(ngModel)]="product.min"
+          name="min"
+          id="min"
+          type="min"
+          class="form-control"
+          maxlength="100"
+          [min]="0"
+          required
+        />
+        <div class="alert alert-danger" *ngIf="min.touched && min.invalid">
+          Ingreser el minimo de stock.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl"></label>
+        <input
+        #imageUrl
+          name="imageUrl"
+          id="imageUrl"
+          type="file"           
+          required
+          url
+          (change)="uploadImage($event)"
+        />
+        <i *ngIf="this.imagen" class="fa fa-spinner fa-spin"></i>
+        <div 
+        class="alert alert-danger"
+          *ngIf="imageUrl.touched && imageUrl.invalid">
+          <div *ngIf="imageUrl.errors.required">
+           Ingrese una imagen.
+          </div>
+          <div *ngIf="imageUrl.errors.url">
+           Imagen invalida.
+          </div>
+        </div>
+      </div>
+      <button
+      type="button"     
+      class="btn btn-danger"
+      routerLink="/admin/products">
+      Cancelar
+    </button> 
+      <button class="btn btn-primary" [disabled]="f.invalid">Guardar</button>
+      <button
+        type="button"
+        (click)="delete()"
+        *ngIf="id"
+        class="btn"
+      >
+      <i class="fa fa-trash"></i>
+      </button>
+
+    </form>
+  </div>
+  <app-product-card
+    class="col-3 mx-auto"
+    [product]="product"
+    [showActions]="false"
+  ></app-product-card>
+</div>

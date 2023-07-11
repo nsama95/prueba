@@ -18,8 +18,8 @@ export class AdminReposicionComponent implements OnInit {
     price: null,
     category: '',
     description:'',
-    max:null,
-    min:null,
+    max:0,
+    min:0,
     stock:0,
     imageUrl: '',
     reposicion:0,
@@ -55,11 +55,18 @@ export class AdminReposicionComponent implements OnInit {
     this.flagRepo= true;
     for (let i = 0; i < this.products.length; i++) {
       const product = this.products[i];
-      if (product.stock < product.min) {
+      if (product.stock==0 ) {
         product.reposicion= product.max;
        await this.productService.update(product,product.id);
-      } else if (product.stock > product.max) {
+      } else if (product.stock < product.max) {
+        product.reposicion=product.max-product.stock;
+        await this.productService.update(product,product.id);
+      }else if (product.stock>=product.max) {
         product.reposicion= 0;
+        await this.productService.update(product,product.id);
+      }
+      else if (product.stock < product.min) {
+        product.reposicion= product.stock-product.min;
         await this.productService.update(product,product.id);
       }
     }       

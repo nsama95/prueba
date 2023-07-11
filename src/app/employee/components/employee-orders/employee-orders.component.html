@@ -1,0 +1,76 @@
+<br><br><br><br>
+<!--div class="search-queries">
+  <input
+    #idQuery
+    type="text"
+    placeholder="Search By ID"
+    class="form-control"
+    (keyup)="filter()"
+  />
+
+  <input
+    #customerQuery
+    type="text"
+    placeholder="Search By Customer"
+    class="form-control"
+    (keyup)="filter()"
+  />
+</div-->
+<div class="table-container" #idQuery  #customerQuery>
+  <table class="table" *ngIf="tableService.pageData$">
+    <thead>
+      <tr>
+        <th>Orden</th>
+        <th>Fecha</th>
+        <th>ID</th>
+        <th>Detalles</th>
+        <th>Estado</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of tableService.pageData$ | async">
+        <td>{{ order.shipping.name }}</td>
+        <td>{{ order.datePlaced | date: "short" }}</td>
+        <td>
+          {{ order.id }}
+        </td>
+        <td>
+          <a routerLink="/orders/{{ order.id }}">Ver</a>
+        </td>
+        <td>
+          {{ order.state}}
+        </td>
+        <td>
+         <button *ngIf="order.state=='Realizado'" (click)="editState(order,order.state)">Confirmar </button>
+         <button *ngIf="order.state=='Confirmado'" (click)="editState(order,order.state)">Empaquetar</button>
+         <button *ngIf="order.state=='empaquetado'"(click)="editState(order,order.state)">Enviar al Correo</button>
+
+         <input *ngIf="order.state=='enviado'&& order.numEnvio==0" type="number"  [(ngModel)]="numEnvio">
+         <button *ngIf="order.state=='enviado'&& order.numEnvio==0"(click)="editStateAndShipping(order,order.state)">Cargar numero de envio</button>
+              <a *ngIf="order.numEnvio">Numero de envio: {{order.numEnvio}}</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination
+    [collectionSize]="tableService.tableSize"
+    [(page)]="tableService.tablePage"
+    [pageSize]="tableService.tablePageSize"
+  >
+  </ngb-pagination>
+
+  <select
+    class="custom-select"
+    style="width: auto;"
+    [(ngModel)]="tableService.tablePageSize"
+  >
+    <option [ngValue]="1">1 items por page</option>
+    <option [ngValue]="5">5 items per page</option>
+    <option [ngValue]="10">10 items per page</option>
+    <option [ngValue]="15">15 items per page</option>
+    <option [ngValue]="20">20 items per page</option>
+  </select>
+</div>

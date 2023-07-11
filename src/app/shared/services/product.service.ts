@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentData } from '@angular/fire/firestore';
 import { Product } from 'shared/models/product';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { ProductTableService } from 'admin/services/product-table.service';
 import { firestore } from 'firebase';
@@ -10,6 +10,7 @@ import { firestore } from 'firebase';
   providedIn: 'root',
 })
 export class ProductService {
+  private productSubject: BehaviorSubject<Product> = new BehaviorSubject<Product>(null);
   constructor(
     private db: AngularFirestore,
     private productTableService: ProductTableService
@@ -19,7 +20,7 @@ export class ProductService {
     return this.db.collection('products').add(product);
   }
 
-  getAll(): Observable<Product[]> {
+  getAll() {
     /* value changes takes an optional parameter that will return the UID from firestore */
 
     return this.db
@@ -46,6 +47,9 @@ export class ProductService {
     return this.db.collection<Product>('products', (ref) =>
       ref.where('category', '==', category)
     ).valueChanges();
+  }
+  setPrecioZona(product: Product) {
+    this.productSubject.next(product);
   }
 
 }
